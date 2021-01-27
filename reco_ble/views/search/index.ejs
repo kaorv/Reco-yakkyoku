@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>User Page</title>
+</head>
+<body>
+
+	<%= data %>
+	<script type="text/javascript">
+		function nextpage(){
+			let url = 'https://' + <%- domain %> + ':49160/webcam?username='+ <%- data %> +'&password=pass';
+			location.href = url
+		}
+		window.setTimeout(nextpage(),2000);
+		
+
+	</script>
+</body>
+</html>

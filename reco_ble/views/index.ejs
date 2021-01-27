@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>top</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/style/ress.min.css">
+  <link href="/public/style/style.css" rel="stylesheet">
+  <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+</head>
+<body>
+	<div class="bluetooth">
+        <p class="instruction">スマホを自販機に<br>
+          近づけてください</p>
+
+        <img class="reco" src="/public/images/reco.png" alt="RECO">
+        <img class="left" src="/public/images/left.png" alt="矢印">
+        <img class="phone"src="/public/images/phone.png" alt="スマホを持つ手">
+        <% var domainname = domain  %>
+        <% var url = "http://" + domainname + ":8080/account/bleauth" %>
+    </div>
+
+    <script>
+      window.onload = function(){
+        window.location.href = "http://localhost:8080/account/bleauth";
+      }
+    </script>
+
+</body>
+</html>

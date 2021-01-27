@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <title>RECO薬局-検索結果</title>
+  <%- include("../_share/link.ejs") %>
+</head>
+<body>
+
+<div>
+  <img src="/public/uiimages/search.png" alt="虫眼鏡" class="white">
+  <h1 class="headline result_headline">検索結果</h1>
+</div>
+
+<!-- 商品カード -->
+<%- include("../_share/itemcard.ejs") %>
+
+<!-- ビデオ通話で相談 -->
+<% const webconfurl = "https://" + domainname + ":49160/webconf/?backpage=result" %>
+<a href="<%= webconfurl %>" class="circle_spread_btn video2">
+<i class="fas fa-video fa-7x faa-float animated fa-video2"></i><br>
+  <p class="soudan1">薬剤師に相談</p>
+</a>
+
+<% const carturl = "https://" + domainname + ":49160/settlement/?pageflag=normal" %>
+<a href="<%= carturl %>" class="btn--cart2 btn--radius"><img src="/public/uiimages/cart2.png" alt="カートを見る">カートを見る</a>
+
+
+<footer>
+  <form action="/logout/">
+    <button type="submit" class="page_btn0 btn_left" value="logout">買い物やめる</button>
+  </form>
+    <% const backurl = "https://" + domainname + ":49160/top/" %>
+  <a href="<%= backurl %>" class="TOP_btn">TOPへ戻る</a>
+  </form>
+  <form action="">
+    <button type="submit" class="page_btn0 btn_Right" value=""></button>
+  </form>
+</footer>
+
+<!-- モーダル -->
+<%- include("../_share/modal.ejs") %>
+
+
+</body>
+</html>

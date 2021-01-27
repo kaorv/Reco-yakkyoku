@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="face-api.js"></script>
+  <script src="js/commons.js"></script>
+  <script src="js/faceDetectionControls.js"></script>
+  <script src="js/imageSelectionControls.js"></script>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.css">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+
+  <!-- ^^^^^UIProgram^^^^^^^ -->
+  <link rel="stylesheet" href="/public/allstyle/ress.min.css">
+  <link href="/public/allstyle/style.css" rel="stylesheet">
+  <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+  <!-- ^^^^^^^^^^^^^^^ -->
+
+
+</head>
+<body>
+  <% var array = [] %>
+  <% for(let i in userinfo) { %>
+    <% let obj = userinfo[i]; %>
+    <% array.push(obj.username) %>
+  <% } %>
+    <div id="navbar"></div>
+    <div class="center-content page-container">
+    
+      <div class="progress" id="loader">
+      <div class="indeterminate"></div>
+        </div>
+        <div style="position: relative" class="margin">
+            <video onloadedmetadata="onPlay(this)" id="inputVideo" autoplay muted playsinline></video>
+            <canvas id="overlay" />
+        </div>
+
+  <p><input type="text" id="users" name="name"></p>
+  
+<div class="page">
+      <p class="instruction">こんにちは、</p>
+      <p id="loginname" class="instruction" type="hidden"><%= user %></p><br>
+      <p class="instruction">さん!</p><br>
+      <p class="instruction">自販機のカメラを<br>
+        見てください</p>
+
+</body>
+
+<script>
+    var data = <%- JSON.stringify(array) %>
+    let serverurl = "<%= hosturl %>"
+    let forwardTimes = []
+    let faceMatcher = null
+
+    function updateTimeStats(timeInMs) {
+        forwardTimes = [timeInMs].concat(forwardTimes).slice(0, 30)
+        const avgTimeInMs = forwardTimes.reduce((total, t) => total + t) / forwardTimes.length
+        $('#time').val(`${Math.round(avgTimeInMs)} ms`)
+        $('#fps').val(`${faceapi.utils.round(1000 / avgTimeInMs)}`)
+    }
+    
+    async function onPlay() {
+        const videoEl = $('#inputVideo').get(0)
+
+        if(videoEl.paused || videoEl.ended || !isFaceDetectionModelLoaded())
+            return setTimeout(() => onPlay())
+
+
+        const options = getFaceDetectorOptions()
+        
+        const ts = Date.now()
+
+        const result = await faceapi
+        .detectAllFaces(videoEl, options)
+        .withFaceLandmarks()
+        .withFaceDescriptors()
+        
+        drawFaceRecognitionResults(result)
+        
+        updateTimeStats(Date.now() - ts)
+
+
+        function drawFaceRecognitionResults(result) {
+            const canvas = $('#overlay').get(0)
+            const dims = faceapi.matchDimensions(canvas, videoEl, true)
+
+            const resizedResult = faceapi.resizeResults(result, dims)
+            const minConfidence = 0.05
+
+            faceapi.draw.drawDetections(canvas, resizedResult)
+            
+            resizedResult.forEach(({detection,descriptor})=>{
+              const label=faceMatcher.findBestMatch(descriptor).toString()
+              const options={label}
+              const drawBox=new faceapi.draw.DrawBox(detection.box, options)
+              drawBox.draw(canvas)
+              var a = label.slice(0,-7);
+              //autofacelogin-----------------------------------------
+              const name = document.getElementById("name")
+              console.log("name:")
+              console.log(loginname.innerHTML)
+              const user = loginname.innerHTML
+              // serverurl = 'localhost'
+              loginurl = 'https://' + serverurl + ':49160/logingo?username=' + user + "&password=pass"
+              if(a == user){
+                location.href = loginurl
+              }
+              //------------------------------------------------------
+              document.getElementById("users").value = a;
+              })
+             
+        }
+
+        setTimeout(() => onPlay())
+      }
+
+    async function run(){
+        //load face detection, face landmark model and face recognition models
+        await changeFaceDetector(selectedFaceDetector)
+        await faceapi.loadFaceLandmarkModel('/')
+        await faceapi.loadFaceRecognitionModel('/')
+        console.log(users.name)
+
+        //initialize face matcher with 1 reference descriptor per bbt character
+        faceMatcher=await createBbtFaceMatcher(1)
+
+        // try to access users webcam and stream the images 
+        // to the video element
+        const stream = await navigator.mediaDevices.getUserMedia({ video: {} })
+        const videoEl = $('#inputVideo').get(0)
+        videoEl.srcObject = stream
+    }
+
+    function updateResults() {}
+
+    $(document).ready(function(){
+        renderNavBar('#navbar','webcam_face_recognition')
+        initFaceDetectionControls()
+        run()
+})
+
+$(function(){
+  $("form").submit(
+    function(e){
+      if(confirm("送信しますか？")){
+        //okボタン
+        var text = $("#users").val();
+        if(text === "" ){
+          //送信キャンセル
+          e.preventDefault();
+          alert("適切ではありません");
+        }else{
+          console.log("送信しました")
+          console.log(text)
+        }
+      }else{
+        //送信キャンセル
+        e.preventDefault();
+        alert("送信されませんでした");
+      }
+        if(text === "unknown"){
+          e.preventDefault();
+          alert("適切ではありません");
+        }
+    }
+  )
+})
+
+
+// const classes = ['amy', 'bernadette', 'asida', 'leonard', 'penny', 'raj', 'sheldon', 'stuart' , 'kaoru', 'maho', 'kohei', 'takuya']
+const classes = data
+function getFaceImageUri(className, idx) {
+  return `${className}/${className}${idx}.png`
+}
+
+function renderFaceImageSelectList(selectListId, onChange, initialValue) {
+  // const indices = [1, 2, 3, 4, 5]
+  const minitues = [...Array(21).keys()].map(i => ++i)
+  function renderChildren(select) {
+    classes.forEach(className => {
+      const optgroup = document.createElement('optgroup')
+      optgroup.label = className
+      select.appendChild(optgroup)
+      indices.forEach(imageIdx =>
+        renderOption(
+          optgroup,
+          `${className} ${imageIdx}`,
+          getFaceImageUri(className, imageIdx)
+        )
+      )
+    })
+  }
+
+  renderSelectList(
+    selectListId,
+    onChange,
+    getFaceImageUri(initialValue.className, initialValue.imageIdx),
+    renderChildren
+  )
+}
+
+// fetch first image of each class and compute their descriptors
+async function createBbtFaceMatcher(numImagesForTraining = 1) {
+  const maxAvailableImagesPerClass = 5
+  numImagesForTraining = Math.min(numImagesForTraining, maxAvailableImagesPerClass)
+
+  const labeledFaceDescriptors = await Promise.all(classes.map(
+    async className => {
+      const descriptors = []
+      for (let i = 1; i < (numImagesForTraining + 1); i++) {
+        const img = await faceapi.fetchImage(getFaceImageUri(className, i))
+        descriptors.push(await faceapi.computeFaceDescriptor(img))
+      }
+
+      return new faceapi.LabeledFaceDescriptors(
+        className,
+        descriptors
+      )
+    }
+  ))
+
+  return new faceapi.FaceMatcher(labeledFaceDescriptors)
+}
+
+    
+</script>
+</body>
+</html>

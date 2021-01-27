@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>top</title>
+</head>
+<body>
+
+<form action="/account/top/" method="get">
+<input type="submit" value="戻る">
+</form>
+
+検索結果一覧<br>
+
+<table>
+  <% for(let i in content) { %>
+  <tr>
+      <% let obj = content[i]; %>
+      <th>
+          <%= obj.item %><br>
+      </th>
+      <th>
+          <%= obj.description %><br>
+      </th>
+  </tr>
+  <% } %>
+</table>
+
+</body>
+</html>

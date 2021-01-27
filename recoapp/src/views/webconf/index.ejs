@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
+  <link rel="stylesheet" href="/public/style2.css">
+
+  <script type="text/javascript" src="/public/allstyle/jquery.min.js"></script>
+  <link rel="stylesheet" href="/public/allstyle/ress.min.css">
+  <link href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.2.1/font-awesome-animation.min.css" type="text/css" media="all" />
+  <title>SkyWayチュートリアル</title>
+</head>
+<body>
+  
+  <div id="video">
+    <video id="their-video" height="400" width="600px" autoplay  playsinline></video>
+    <video id="my-video" width="200px" autoplay muted playsinline></video>
+  </div>
+  <div id="fanction">
+      <p>あなたのID: <span id="my-id"></span></p>
+      <textarea id="their-id"></textarea>
+      <button id="share-screen">画面共有</button>
+      <button id="share-finish">共有終了</button>
+      <input type="image" id="make-call" src="/public/icon/call.svg"alt="発信">
+      <input type="image"id="close-call" src="/public/icon/end.svg"alt="切断"> 
+  </div>
+
+  <h1>商品ラインナップ</h1>
+  <ul >
+    <li id="type">
+      <p>頭痛薬</p>
+    </li>
+    <li class="list">
+      <a href="JavaScript:myGo(0)"><img src="/public/medical/luna/luna-zaiko.png"border="0" width="100" height="75"></a>
+      <a href="JavaScript:myGo(1)"><img src="/public/medical/naronar/naron-r-zaiko.png" border="0" width="100" height="75"></a>
+      <a href="JavaScript:myGo(2)"><img src="/public/medical/naronat/naron-t-zaiko.png" border="0" width="100" height="75"></a>
+      <a href="JavaScript:myGo(3)"><img src="/public/medical/naronal/naron_royal.jpg" border="0" width="100" height="75"></a>
+      <a href="JavaScript:myGo(4)"><img src="/public/medical/naronm/naron-m-zaiko.png"border="0" width="100" height="75"></a>
+    </li>
+    <li id="buy-bottom" style="display:inline-flex">
+      <!-- style="display:inline-flex"はformタグを横並びにするためのもの -->
+      <!-- サーバに処理を値付きで飛ばすためにformを用いています -->
+      <!-- ハードコーディングですが、後ほどDBとつなげて改善します -->
+      <form name="luna">
+        <input type="hidden" name="itemname" value="luna"></input>
+        <input type="hidden" name="itemvalue" value="1188"></input>
+        <input type="button" id="luna_btn" class="buy" value="追加">
+      </form>
+      <form name="naronr">
+        <input type="hidden" name="itemname" value="ナロンエースR"></input>
+        <input type="hidden" name="itemvalue" value="760"></input>
+        <input type="button" id="naronr_btn" class="buy" value="追加">
+      </form>
+      <form name="naront">
+        <input type="hidden" name="itemname" value="ナロンエースT"></input>
+        <input type="hidden" name="itemvalue" value="820"></input>
+        <input type="button" id="naront_btn" class="buy" value="追加">
+      </form>
+      <form name="naronl">
+        <input type="hidden" name="itemname" value="ナロンエースロイヤル"></input>
+        <input type="hidden" name="itemvalue" value="980"></input>
+        <input type="button" id="naronl_btn" class="buy" value="追加">
+      </form>
+      <form name="naronm">
+        <input type="hidden" name="itemname" value="ナロンメディカル"></input>
+        <input type="hidden" name="itemvalue" value="980"></input>
+        <input type="button" id="naronm_btn" class="buy" value="追加">
+      </form>
+    </li>
+    <li id="type">
+      <p>胃腸薬</p>
+    </li>
+    <li class="list">
+      <a href="JavaScript:myGo(5)"><img src="/public/medical/biofegeri/biofel_geri_pack.jpg"border="0" width="100" height="75"></a>
+      <a href="JavaScript:myGo(6)"><img src="/public/medical/biofeshiyou/biofe_stop.jpg"border="0" width="100" height="75"></a>
+    </li>
+    <li id="buy-bottom" style="display:inline-flex">
+      <form name="biofegeri">
+        <input type="hidden" name="itemname" value="ビオフェルミン下痢止め"></input>
+        <input type="hidden" name="itemvalue" value="1000"></input>
+        <input type="button" id="biofegeri_btn" class="buy" value="追加">
+      </form>
+      <form name="biofeshiyou">
+        <input type="hidden" name="itemname" value="ビオフェルミン止瀉薬"></input>
+        <input type="hidden" name="itemvalue" value="1200"></input>
+        <input type="button" id="biofeshiyou_btn" class="buy" value="追加">
+      </form>
+    </li>
+    <li id="type">
+      <p>風邪薬</p>
+    </li>
+    <li class="list">
+      <a href="JavaScript:myGo(7)"><img src="/public/medical/pabronap/pabron-zaiko.PNG"border="0" width="100" height="75"></a>
+      <a href="JavaScript:myGo(8)"><img src="/public/medical/pabronag/pabron_gold_a.jpg"border="0" width="100" height="75"></a>
+    </li>
+    <li id="buy-bottom" style="display:inline-flex">
+      <form name="pabronp">
+        <input type="hidden" name="itemname" value="パブロンエースPro"></input>
+        <input type="hidden" name="itemvalue" value="1200"></input>
+        <input type="button" id="pabronp_btn" class="buy" value="追加">
+      </form>
+      <form name="pabrong">
+        <input type="hidden" name="itemname" value="パブロンゴールドA"></input>
+        <input type="hidden" name="itemvalue" value="1700"></input>
+        <input type="button" id="pabrong_btn" class="buy" value="追加">
+      </form>
+    </li>
+    <li id="type">
+      <p>鼻炎薬</p>
+    </li>
+    <li class="list">
+      <a href="JavaScript:myGo(9)"id="item"><img src="/public/medical/pabronnoseex/pabron_nosedrops_ex.png"border="0" width="100" height="75"></a>
+      <a href="JavaScript:myGo(10)"id="item"><img src="/public/medical/pabronnosece/pabron_nose_sa.jpg"border="0" width="100" height="75"></a>
+      <a href="JavaScript:myGo(11)"id="item"><img src="/public/medical/pabron/pabron_nose_attack.jpg"border="0" width="100" height="75"></a>
+      <a href="JavaScript:myGo(12)"id="item"><img src="/public/medical/pabronnosefast/pabron_fastnosedrops_ex.png"border="0" width="100" height="75"></a>
+    </li>
+    <li id="buy-bottom" style="display:inline-flex">
+      <form name="pabronnosedrops">
+        <input type="hidden" name="itemname" value="パブロン点鼻EX"></input>
+        <input type="hidden" name="itemvalue" value="891"></input>
+        <input type="button" id="pabronnosedrops_btn" class="buy" value="追加">
+      </form>
+      <form name="pabronnosesa">
+        <input type="hidden" name="itemname" value="鼻炎カプセルSα"></input>
+        <input type="hidden" name="itemvalue" value="1200"></input>
+        <input type="button" id="pabronnosesa_btn" class="buy" value="追加">
+      </form>
+      <form name="pabronnoseattack">
+        <input type="hidden" name="itemname" value="鼻炎アタックJL"></input>
+        <input type="hidden" name="itemvalue" value="1380"></input>
+        <input type="button" id="pabronnoseattack_btn" class="buy" value="追加">
+      </form>
+      <form name="pabronnosefast">
+        <input type="hidden" name="itemname" value="パブロン鼻炎速溶錠ex"></input>
+        <input type="hidden" name="itemvalue" value="1780"></input>
+        <input type="button" id="pabronnosefast_btn" class="buy" value="追加">
+      </form>
+    </li>
+  </ul>
+  <div id="share-dsplay">
+    <video id="share-video" width="400px"muted playshinlene></video>
+    </div>
+    
+    <div>
+      <div id="chatbox">
+      <pre id="messages"></pre>
+      </div>
+      <input type="text" id="local-text">
+      <input type="image" id="send-trigger" src="/public/icon/send.svg"alt="送信">
+    </div>
+  
+    <input type="file"id="avatar" name="avatar" accept="image/png, image/jpeg">
+    <button id="image-trigger">画像送信</button>
+    <p id="status"></p>
+  
+    <div id="image-output">
+      <img id="output"alt="薬剤師さんからの画像が出ます"> 
+    </div>
+    
+</body>
+<!-- <script type="text/javascript" src="/public/script.js"></script> -->
+
+<script>
+
+  //画面遷移をしたくないのでajaxで非同期処理を実現しています
+  //ボタンを押した時にサーバ上でDBに追加されています
+  //ハードコーディングですが後ほどDBとつなげて改善します
+  let addurl = 'https://' + '<%= hostnamespace %>' + ':49160/addapi'
+  document.getElementById("luna_btn").onclick = function() {
+    var itemname = document.forms["luna"].elements["itemname"].value
+    var itemvalue = document.forms["luna"].elements["itemvalue"].value
+    //商品の名前と値段を取得して、json形式に格納する
+    var jsonData = {item:itemname,value:itemvalue}
+    $.ajax({
+        type: 'GET',
+        url: addurl,
+        data: jsonData,
+        contentType: 'application/json',
+        success: function(data, status, xhr) { 
+          //カートへの追加時のモーダルを表示させるためにタグから生成(以下を生成する)
+          //------------------------------------------------------
+          // <div class="Addcart">
+            // <p><i class="fas fa-shopping-cart fa-10x"></i></p>
+            // <h1 class="cart_message">カートに入れました</h1>
+          // </div>
+          //------------------------------------------------------
+          
+          //まず骨格となるdivタグから生成しbodyに追加、modalwrapperのidを与える
+          var div = document.createElement('div');
+          div.id = "modalwrapper";
+          div.className = "Addcart";
+          document.body.appendChild(div);
+
+          //中身を生成し、各々class、値を割り当てる
+          var p = document.createElement('p');
+          var i = document.createElement('i');
+          var h1 = document.createElement('h1');
+          i.className = "fas fa-shopping-cart fa-10x"
+          h1.className = "cart_message";
+          p.appendChild(i);
+          h1.innerHTML = "カートに入れました"
+
+          //modalwrapperを取得し、そこに上記で生成した中身を追加する
+          let element = document.getElementById("modalwrapper")
+          // element.className = "Addcart"
+          document.getElementById('modalwrapper').appendChild(p);
+          document.getElementById('modalwrapper').appendChild(h1);
+          $(function() {
+            setTimeout(function(){
+              $('.Addcart p').fadeIn(1600);
+            },100); //0.5秒後にロゴをフェードイン!
+            setTimeout(function(){
+              $('.Addcart h1').fadeIn(1600);
+            },100); //0.5秒後にロゴをフェードイン!
+            setTimeout(function(){
+              $('.Addcart').fadeOut(500);
+            },2000); //2.5秒後にロゴ含め真っ白背景をフェードアウト！
+          });
+          setTimeout(function(){
+            //繰り返すために全部消す
+            let all = document.getElementById("modalwrapper")
+            all.remove()
+          },3000);
+        },
+        error: function(xhr, status, err) { alert('ERROR'); }
+    });
+  };
+  document.getElementById("naronr_btn").onclick = function() {
+    var itemname = document.forms["naronr"].elements["itemname"].value
+    var itemvalue = document.forms["naronr"].elements["itemvalue"].value
+    var jsonData = {item:itemname,value:itemvalue}
+    $.ajax({
+        type: 'GET',
+        url: addurl,
+        data: jsonData,
+        contentType: 'application/json',
+        success: function(data, status, xhr) { 
+          var div = document.createElement('div');
+          div.id = "modalwrapper";
+          div.className = "Addcart";
+          document.body.appendChild(div);
+          var p = document.createElement('p');
+          var i = document.createElement('i');
+          var h1 = document.createElement('h1');
+          i.className = "fas fa-shopping-cart fa-10x"
+          h1.className = "cart_message";
+          p.appendChild(i);
+          h1.innerHTML = "カートに入れました"
+          let element = document.getElementById("modalwrapper")
+          document.getElementById('modalwrapper').appendChild(p);
+          document.getElementById('modalwrapper').appendChild(h1);
+          $(function() {
+            setTimeout(function(){
+              $('.Addcart p').fadeIn(1600);
+            },100); //0.5秒後にロゴをフェードイン!
+            setTimeout(function(){
+              $('.Addcart h1').fadeIn(1600);
+            },100); //0.5秒後にロゴをフェードイン!
+            setTimeout(function(){
+              $('.Addcart').fadeOut(500);
+            },2000); //2.5秒後にロゴ含め真っ白背景をフェードアウト！
+          });
+          setTimeout(function(){
+            //繰り返すために全部消す
+            let all = document.getElementById("modalwrapper")
+            all.remove()
+          },3000);
+        },
+        error: function(xhr, status, err) { alert('ERROR'); }
+    });
+  };
+  document.getElementById("naront_btn").onclick = function() {
+    var itemname = document.forms["naront"].elements["itemname"].value
+    var itemvalue = document.forms["naront"].elements["itemvalue"].value
+    var jsonData = {item:itemname,value:itemvalue}
+    $.ajax({
+        type: 'GET',
+        url: addurl,
+        data: jsonData,
+        contentType: 'application/json',
+        success: function(data, status, xhr) { 
+          var div = document.createElement('div');
+          div.id = "modalwrapper";
+          document.body.appendChild(div);
+          var p = document.createElement('p');
+          var i = document.createElement('i');
+          var h1 = document.createElement('h1');
+          i.className = "fas fa-shopping-cart fa-10x"
+          h1.className = "cart_message";
+          p.appendChild(i);
+          h1.innerHTML = "カートに入れました"
+          let element = document.getElementById("modalwrapper")
+          element.className = "Addcart"
+          document.getElementById('modalwrapper').appendChild(p);
+          document.getElementById('modalwrapper').appendChild(h1);
+          $(function() {
+            setTimeout(function(){
+              $('.Addcart p').fadeIn(1600);
+            },100); //0.5秒後にロゴをフェードイン!
+            setTimeout(function(){
+              $('.Addcart h1').fadeIn(1600);
+            },100); //0.5秒後にロゴをフェードイン!
+            setTimeout(function(){
+              $('.Addcart').fadeOut(500);
+            },2000); //2.5秒後にロゴ含め真っ白背景をフェードアウト！
+          });
+          setTimeout(function(){
+            let all = document.getElementById("modalwrapper")
+            all.remove()
+          },3000);
+        },
+        error: function(xhr, status, err) { alert('ERROR'); }
+    });
+  };
+  document.getElementById("naronl_btn").onclick = function() {
+    var itemname = document.forms["naronl"].elements["itemname"].value
+    var itemvalue = document.forms["naronl"].elements["itemvalue"].value
+    var jsonData = {item:itemname,value:itemvalue}
+    $.ajax({
+        type: 'GET',
+        url: addurl,
+        data: jsonData,
+        contentType: 'application/json',
+        success: function(data, status, xhr) { 
+          var div = document.createElement('div');
+          div.id = "modalwrapper";
+          document.body.appendChild(div);
+          var p = document.createElement('p');
+          var i = document.createElement('i');
+          var h1 = document.createElement('h1');
+          i.className = "fas fa-shopping-cart fa-10x"
+          h1.className = "cart_message";
+          p.appendChild(i);
+          h1.innerHTML = "カートに入れました"
+          let element = document.getElementById("modalwrapper")
+          element.className = "Addcart"
+          document.getElementById('modalwrapper').appendChild(p);
+          document.getElementById('modalwrapper').appendChild(h1);
+          $(function() {
+            setTimeout(function(){
+              $('.Addcart p').fadeIn(1600);
+            },100); //0.5秒後にロゴをフェードイン!
+            setTimeout(function(){
+              $('.Addcart h1').fadeIn(1600);
+            },100); //0.5秒後にロゴをフェードイン!
+            setTimeout(function(){
+              $('.Addcart').fadeOut(500);
+            },2000); //2.5秒後にロゴ含め真っ白背景をフェードアウト！
+          });
+          setTimeout(function(){
+            let all = document.getElementById("modalwrapper")
+            all.remove()
+          },3000);
+        },
+        error: function(xhr, status, err) { alert('ERROR'); }
+    });
+  };
+  document.getElementById("naronm_btn").onclick = function() {
+    var itemname = document.forms["naronm"].elements["itemname"].value
+    var itemvalue = document.forms["naronm"].elements["itemvalue"].value
+    var jsonData = {item:itemname,value:itemvalue}
+    $.ajax({
+        type: 'GET',
+        url: addurl,
+        data: jsonData,
+        contentType: 'application/json',
+        success: function(data, status, xhr) { 
+          var div = document.createElement('div');
+          div.id = "modalwrapper";
+          div.className = "Addcart";
+          document.body.appendChild(div);
+          var p = document.createElement('p');
+          var i = document.createElement('i');
+          var h1 = document.createElement('h1');
+          i.className = "fas fa-shopping-cart fa-10x"
+          h1.className = "cart_message";
+          p.appendChild(i);
+          h1.innerHTML = "カートに入れました"
+          let element = document.getElementById("modalwrapper")
+          document.getElementById('modalwrapper').appendChild(p);
+          document.getElementById('modalwrapper').appendChild(h1);
+          $(function() {
+            setTimeout(function(){
+              $('.Addcart p').fadeIn(1600);
+            },100); //0.5秒後にロゴをフェードイン!
+            setTimeout(function(){
+              $('.Addcart h1').fadeIn(1600);
+            },100); //0.5秒後にロゴをフェードイン!
+            setTimeout(function(){
+              $('.Addcart').fadeOut(500);
+            },2000); //2.5秒後にロゴ含め真っ白背景をフェードアウト！
+          });
+          setTimeout(function(){
+            let all = document.getElementById("modalwrapper")
+            all.remove()
+          },3000);
+        },
+        error: function(xhr, status, err) { alert('ERROR'); }
+    });
+  };
+
+  document.getElementById("biofegeri_btn").onclick = function() {
+    var itemname = document.forms["biofegeri"].elements["itemname"].value
+    var itemvalue = document.forms["biofegeri"].elements["itemvalue"].value
+    var jsonData = {item:itemname,value:itemvalue}
+    $.ajax({
+        type: 'GET',
+        url: addurl,
+        data: jsonData,
+        contentType: 'application/json',
+        success: function(data, status, xhr) { 
+          var div = document.createElement('div');
+          div.id = "modalwrapper";
+          document.body.appendChild(div);
+          var p = document.createElement('p');
+          var i = document.createElement('i');
+          var h1 = document.createElement('h1');
+          i.className = "fas fa-shopping-cart fa-10x"
+          h1.className = "cart_message";
+          p.appendChild(i);
+          h1.innerHTML = "カートに入れました"
+          let element = document.getElementById("modalwrapper")
+          element.className = "Addcart"
+          document.getElementById('modalwrapper').appendChild(p);
+          document.getElementById('modalwrapper').appendChild(h1);
+          $(function() {
+            setTimeout(function(){
+              $('.Addcart p').fadeIn(1600);
+            },100); //0.5秒後にロゴをフェードイン!
+            setTimeout(function(){
+              $('.Addcart h1').fadeIn(1600);
+            },100); //0.5秒後にロゴをフェードイン!
+            setTimeout(function(){
+              $('.Addcart').fadeOut(500);
+            },2000); //2.5秒後にロゴ含め真っ白背景をフェードアウト！
+          });
+          setTimeout(function(){
+            let all = document.getElementById("modalwrapper")
+            all.remove()
+          },3000);
+        },
+        error: function(xhr, status, err) { alert('ERROR'); }
+    });
+  };
+
+  document.getElementById("biofeshiyou_btn").onclick = function() {
+    var itemname = document.forms["biofeshiyou"].elements["itemname"].value
+    var itemvalue = document.forms["biofeshiyou"].elements["itemvalue"].value
+    var jsonData = {item:itemname,value:itemvalue}
+    $.ajax({
+        type: 'GET',
+        url: addurl,
+        data: jsonData,
+        contentType: 'application/json',
+        success: function(data, status, xhr) { 
+          var div = document.createElement('div');
+          div.id = "modalwrapper";
+          document.body.appendChild(div);
+          var p = document.createElement('p');
+          var i = document.createElement('i');
+          var h1 = document.createElement('h1');
+          i.className = "fas fa-shopping-cart fa-10x"
+          h1.className = "cart_message";
+          p.appendChild(i);
+          h1.innerHTML = "カートに入れました"
+          let element = document.getElementById("modalwrapper")
+          element.className = "Addcart"
+          document.getElementById('modalwrapper').appendChild(p);
+          document.getElementById('modalwrapper').appendChild(h1);
+          $(function() {
+            setTimeout(function(){
+              $('.Addcart p').fadeIn(1600);
+            },100); //0.5秒後にロゴをフェードイン!
+            setTimeout(function(){
+              $('.Addcart h1').fadeIn(1600);
+            },100); //0.5秒後にロゴをフェードイン!
+            setTimeout(function(){
+              $('.Addcart').fadeOut(500);
+            },2000); //2.5秒後にロゴ含め真っ白背景をフェードアウト！
+          });
+          setTimeout(function(){
+            let all = document.getElementById("modalwrapper")
+            all.remove()
+          },3000);
+        },
+        error: function(xhr, status, err) { alert('ERROR'); }
+    });
+  };
+
+  document.getElementById("pabronp_btn").onclick = function() {
+    var itemname = document.forms["pabronp"].elements["itemname"].value
+    var itemvalue = document.forms["pabronp"].elements["itemvalue"].value
+    var jsonData = {item:itemname,value:itemvalue}
+    $.ajax({
+        type: 'GET',
+        url: addurl,
+        data: jsonData,
+        contentType: 'application/json',
+        success: function(data, status, xhr) { 
+          var div = document.createElement('div');
+          div.id = "modalwrapper";
+          document.body.appendChild(div);
+          var p = document.createElement('p');
+          var i = document.createElement('i');
+          var h1 = document.createElement('h1');
+          i.className = "fas fa-shopping-cart fa-10x"
+          h1.className = "cart_message";
+          p.appendChild(i);
+          h1.innerHTML = "カートに入れました"
+          let element = document.getElementById("modalwrapper")
+          element.className = "Addcart"
+          document.getElementById('modalwrapper').appendChild(p);
+          document.getElementById('modalwrapper').appendChild(h1);
+          $(function() {
+            setTimeout(function(){
+              $('.Addcart p').fadeIn(1600);
+            },100); //0.5秒後にロゴをフェードイン!
+            setTimeout(function(){
+              $('.Addcart h1').fadeIn(1600);
+            },100); //0.5秒後にロゴをフェードイン!
+            setTimeout(function(){
+              $('.Addcart').fadeOut(500);
+            },2000); //2.5秒後にロゴ含め真っ白背景をフェードアウト！
+          });
+          setTimeout(function(){
+            let all = document.getElementById("modalwrapper")
+            all.remove()
+          },3000);
+        },
+        error: function(xhr, status, err) { alert('ERROR'); }
+    });
+  };
+
+  document.getElementById("pabrong_btn").onclick = function() {
+    var itemname = document.forms["pabrong"].elements["itemname"].value
+    var itemvalue = document.forms["pabrong"].elements["itemvalue"].value
+    var jsonData = {item:itemname,value:itemvalue}
+    $.ajax({
+        type: 'GET',
+        url: addurl,
+        data: jsonData,
+        contentType: 'application/json',
+        success: function(data, status, xhr) { 
+          var div = document.createElement('div');
+          div.id = "modalwrapper";
+          document.body.appendChild(div);
+          var p = document.createElement('p');
+          var i = document.createElement('i');
+          var h1 = document.createElement('h1');
+          i.className = "fas fa-shopping-cart fa-10x"
+          h1.className = "cart_message";
+          p.appendChild(i);
+          h1.innerHTML = "カートに入れました"
+          let element = document.getElementById("modalwrapper")
+          element.className = "Addcart"
+          document.getElementById('modalwrapper').appendChild(p);
+          document.getElementById('modalwrapper').appendChild(h1);
+          $(function() {
+            setTimeout(function(){
+              $('.Addcart p').fadeIn(1600);
+            },100); //0.5秒後にロゴをフェードイン!
+            setTimeout(function(){
+              $('.Addcart h1').fadeIn(1600);
+            },100); //0.5秒後にロゴをフェードイン!
+            setTimeout(function(){
+              $('.Addcart').fadeOut(500);
+            },2000); //2.5秒後にロゴ含め真っ白背景をフェードアウト！
+          });
+          setTimeout(function(){
+            let all = document.getElementById("modalwrapper")
+            all.remove()
+          },3000);
+        },
+        error: function(xhr, status, err) { alert('ERROR'); }
+    });
+  };
+
+  document.getElementById("pabronnosedrops_btn").onclick = function() {
+    var itemname = document.forms["pabronnosedrops"].elements["itemname"].value
+    var itemvalue = document.forms["pabronnosedrops"].elements["itemvalue"].value
+    var jsonData = {item:itemname,value:itemvalue}
+    $.ajax({
+        type: 'GET',
+        url: addurl,
+        data: jsonData,
+        contentType: 'application/json',
+        success: function(data, status, xhr) { 
+          var div = document.createElement('div');
+          div.id = "modalwrapper";
+          document.body.appendChild(div);
+          var p = document.createElement('p');
+          var i = document.createElement('i');
+          var h1 = document.createElement('h1');
+          i.className = "fas fa-shopping-cart fa-10x"
+          h1.className = "cart_message";
+          p.appendChild(i);
+          h1.innerHTML = "カートに入れました"
+          let element = document.getElementById("modalwrapper")
+          element.className = "Addcart"
+          document.getElementById('modalwrapper').appendChild(p);
+          document.getElementById('modalwrapper').appendChild(h1);
+          $(function() {
+            setTimeout(function(){
+              $('.Addcart p').fadeIn(1600);
+            },100); //0.5秒後にロゴをフェードイン!
+            setTimeout(function(){
+              $('.Addcart h1').fadeIn(1600);
+            },100); //0.5秒後にロゴをフェードイン!
+            setTimeout(function(){
+              $('.Addcart').fadeOut(500);
+            },2000); //2.5秒後にロゴ含め真っ白背景をフェードアウト！
+          });
+          setTimeout(function(){
+            let all = document.getElementById("modalwrapper")
+            all.remove()
+          },3000);
+        },
+        error: function(xhr, status, err) { alert('ERROR'); }
+    });
+  };
+
+  document.getElementById("pabronnosesa_btn").onclick = function() {
+    var itemname = document.forms["pabronnosesa"].elements["itemname"].value
+    var itemvalue = document.forms["pabronnosesa"].elements["itemvalue"].value
+    var jsonData = {item:itemname,value:itemvalue}
+    $.ajax({
+        type: 'GET',
+        url: addurl,
+        data: jsonData,
+        contentType: 'application/json',
+        success: function(data, status, xhr) { 
+          var div = document.createElement('div');
+          div.id = "modalwrapper";
+          document.body.appendChild(div);
+          var p = document.createElement('p');
+          var i = document.createElement('i');
+          var h1 = document.createElement('h1');
+          i.className = "fas fa-shopping-cart fa-10x"
+          h1.className = "cart_message";
+          p.appendChild(i);
+          h1.innerHTML = "カートに入れました"
+          let element = document.getElementById("modalwrapper")
+          element.className = "Addcart"
+          document.getElementById('modalwrapper').appendChild(p);
+          document.getElementById('modalwrapper').appendChild(h1);
+          $(function() {
+            setTimeout(function(){
+              $('.Addcart p').fadeIn(1600);
+            },100); //0.5秒後にロゴをフェードイン!
+            setTimeout(function(){
+              $('.Addcart h1').fadeIn(1600);
+            },100); //0.5秒後にロゴをフェードイン!
+            setTimeout(function(){
+              $('.Addcart').fadeOut(500);
+            },2000); //2.5秒後にロゴ含め真っ白背景をフェードアウト！
+          });
+          setTimeout(function(){
+            let all = document.getElementById("modalwrapper")
+            all.remove()
+          },3000);
+        },
+        error: function(xhr, status, err) { alert('ERROR'); }
+    });
+  };
+
+  document.getElementById("pabronnoseattack_btn").onclick = function() {
+    var itemname = document.forms["pabronnoseattack"].elements["itemname"].value
+    var itemvalue = document.forms["pabronnoseattack"].elements["itemvalue"].value
+    var jsonData = {item:itemname,value:itemvalue}
+    $.ajax({
+        type: 'GET',
+        url: addurl,
+        data: jsonData,
+        contentType: 'application/json',
+        success: function(data, status, xhr) { 
+          var div = document.createElement('div');
+          div.id = "modalwrapper";
+          document.body.appendChild(div);
+          var p = document.createElement('p');
+          var i = document.createElement('i');
+          var h1 = document.createElement('h1');
+          i.className = "fas fa-shopping-cart fa-10x"
+          h1.className = "cart_message";
+          p.appendChild(i);
+          h1.innerHTML = "カートに入れました"
+          let element = document.getElementById("modalwrapper")
+          element.className = "Addcart"
+          document.getElementById('modalwrapper').appendChild(p);
+          document.getElementById('modalwrapper').appendChild(h1);
+          $(function() {
+            setTimeout(function(){
+              $('.Addcart p').fadeIn(1600);
+            },100); //0.5秒後にロゴをフェードイン!
+            setTimeout(function(){
+              $('.Addcart h1').fadeIn(1600);
+            },100); //0.5秒後にロゴをフェードイン!
+            setTimeout(function(){
+              $('.Addcart').fadeOut(500);
+            },2000); //2.5秒後にロゴ含め真っ白背景をフェードアウト！
+          });
+          setTimeout(function(){
+            let all = document.getElementById("modalwrapper")
+            all.remove()
+          },3000);
+        },
+        error: function(xhr, status, err) { alert('ERROR'); }
+    });
+  };
+
+  document.getElementById("pabronnosefast_btn").onclick = function() {
+    var itemname = document.forms["pabronnosefast"].elements["itemname"].value
+    var itemvalue = document.forms["pabronnosefast"].elements["itemvalue"].value
+    var jsonData = {item:itemname,value:itemvalue}
+    $.ajax({
+        type: 'GET',
+        url: addurl,
+        data: jsonData,
+        contentType: 'application/json',
+        success: function(data, status, xhr) { 
+          var div = document.createElement('div');
+          div.id = "modalwrapper";
+          document.body.appendChild(div);
+          var p = document.createElement('p');
+          var i = document.createElement('i');
+          var h1 = document.createElement('h1');
+          i.className = "fas fa-shopping-cart fa-10x"
+          h1.className = "cart_message";
+          p.appendChild(i);
+          h1.innerHTML = "カートに入れました"
+          let element = document.getElementById("modalwrapper")
+          element.className = "Addcart"
+          document.getElementById('modalwrapper').appendChild(p);
+          document.getElementById('modalwrapper').appendChild(h1);
+          $(function() {
+            setTimeout(function(){
+              $('.Addcart p').fadeIn(1600);
+            },100); //0.5秒後にロゴをフェードイン!
+            setTimeout(function(){
+              $('.Addcart h1').fadeIn(1600);
+            },100); //0.5秒後にロゴをフェードイン!
+            setTimeout(function(){
+              $('.Addcart').fadeOut(500);
+            },2000); //2.5秒後にロゴ含め真っ白背景をフェードアウト！
+          });
+          setTimeout(function(){
+            let all = document.getElementById("modalwrapper")
+            all.remove()
+          },3000);
+        },
+        error: function(xhr, status, err) { alert('ERROR'); }
+    });
+  };
+
+  //ejsの埋め込みのためにjavascriptを直書きしている
+  let localStream;
+  let shareStream;
+  const peer = new Peer({
+    key: '656590dd-bc77-4994-bf40-d22377677d42',
+    debug: 3
+  });
+    peer.on('open', () => {
+        document.getElementById('my-id').textContent = peer.id;
+        peer.listAllPeers(function(list){//Reco側機能
+          console.log(list);//[]
+          var isArray=list instanceof Array;
+          console.log(isArray);//false
+          for(var cnt=0;cnt<list.length;cnt++){
+              console.log(+list[cnt]+",");
+          }
+          if(document.getElementById('my-id').textContent !=list[0]){
+            document.getElementById('their-id').textContent=list[0];//自動ID入力
+          }
+      });
+    });
+  
+    navigator.mediaDevices.getUserMedia({video: true, audio: true})
+        .then( stream => {
+        const videoElm = document.getElementById('my-video')
+        videoElm.srcObject = stream;
+        videoElm.play();
+        localStream = stream;
+      }).catch( error => {
+        console.error('mediaDevice.getUserMedia() error:', error);
+        return;
+      });
+  
+    document.getElementById("share-finish").style.display="none";
+  
+    //画面共有
+    document.getElementById("share-screen").onclick=()=>{ 
+      navigator.mediaDevices.getDisplayMedia({video: true,audio:true})
+      .then( stream => {
+        const videoElm = document.getElementById('share-video')
+        videoElm.srcObject = stream;
+        videoElm.play();
+        shareStream = stream;
+        shareStream.addTrack(localStream.getAudioTracks()[0]);
+        const theirID = document.getElementById('their-id').value;
+        const mediaConnection = peer.call(theirID,shareStream);
+        document.getElementById("share-finish").style.display="block";
+        document.getElementById("share-screen").style.display="none";
+        document.getElementById('close-call').onclick = () =>{
+          mediaConnection.close();
+        };
+      }).catch( error => {
+        console.error('mediaDevice.getUserMedia() error:', error);
+        return;
+      })
+    }
+    
+    document.getElementById("share-finish").onclick=()=>{
+      localStream.getVideoTracks()[0].stop();
+      document.getElementById("share-finish").style.display="none";
+      document.getElementById("share-screen").style.display="block";
+      navigator.mediaDevices.getUserMedia({video: true, audio: true})
+        .then( stream => {
+        const videoElm = document.getElementById('my-video')
+        videoElm.srcObject = stream;
+        videoElm.play();
+        localStream = stream;
+        const theirID = document.getElementById('their-id').value;
+        const mediaConnection = peer.call(theirID,localStream);
+        document.getElementById('close-call').onclick = () =>{
+          mediaConnection.close();
+        };
+      }).catch( error => {
+        console.error('mediaDevice.getUserMedia() error:', error);
+        return;
+      });
+    }
+  
+    //発信側処理
+    function callyaku(){
+        const theirID = document.getElementById('their-id').value;
+        const mediaConnection = peer.call(theirID, localStream);
+        setEventListener(mediaConnection);
+        document.getElementById('close-call').onclick = () =>{
+          mediaConnection.close(true);
+        };
+        mediaConnection.once('close',()=>{
+        // 切ってからそのまま遷移するためコメントアウトした
+        // window.alert("会話が終了しました");
+      });
+    }
+    
+    setTimeout("callyaku()", 3000);
+  
+  
+  
+    const setEventListener = mediaConnection => {
+      mediaConnection.on('stream', stream => {
+        const videoElm = document.getElementById('their-video')
+        videoElm.srcObject = stream;
+        videoElm.play();
+      });
+    }
+    
+  //着信側処理
+    peer.on('call', mediaConnection => {
+      window.alert("患者さんから着信が来ました");
+      mediaConnection.answer(localStream);
+      setEventListener(mediaConnection);
+      //変更点
+      document.getElementById('close-call').onclick = () =>{
+        mediaConnection.close(true);
+      };  
+    });
+    
+    
+  /*--- テキストチャット ---*/
+  const localId = document.getElementById('my-id');//自分のpeerID
+  const localText = document.getElementById('local-text');//送るメッセージ
+  const connectTrigger = document.getElementById('make-call');//peer接続ボタン
+  const closeTrigger = document.getElementById('close-call');//peer切断ボタン
+  const sendTrigger = document.getElementById('send-trigger');//メッセージ送信ボタン
+  const remoteId = document.getElementById('their-id');//相手のpeerID
+  const messages = document.getElementById('messages');//メッセージの表示場所
+  const imageTrigger = document.getElementById('image-trigger');//画像送信
+  const outputImage = document.getElementById('output');//画像出力
+    function callyaku2() {
+      if (!peer.open) {
+        return;
+      }
+      const dataConnection = peer.connect(remoteId.value);
+      dataConnection.once('open', async () => {
+        messages.textContent += `=== 薬剤師さんと接続されました ===\n`;
+        messages.textContent += `=== 症状といつからその症状が出たか伝えてください ===\n`;      
+        sendTrigger.addEventListener('click', onClickSend);
+      });
+      dataConnection.on('data', data => {
+        messages.textContent += `薬剤師さん: ${data}\n`;
+        outputImage.src=data;//画像表示
+      });
+      dataConnection.once('close', () => {
+        messages.textContent += `=== 薬剤師さんとの接続が終了しました ===\n`;
+        sendTrigger.removeEventListener('click', onClickSend);
+      });
+      closeTrigger.addEventListener('click', () => {
+        dataConnection.close()
+        //コネクションを切った後にカート画面へ遷移する
+        var hostnamespace = "<%= hostnamespace %>";
+        let carturl = "https://"+ hostnamespace + ":49160/settlement?pageflag=normal";
+        location.href = carturl
+      }, {
+        once: true,
+      });
+      function onClickSend() {
+        const data = localText.value;
+        dataConnection.send(data);
+        messages.textContent += `あなた: ${data}\n`;
+        localText.value = '';
+      }
+    };
+    window.setTimeout("callyaku2()",3000);
+    peer.on('connection', dataConnection => {
+      dataConnection.once('open', async () => {
+        messages.textContent += `=== Recoと接続されました ===\n`;
+        peer.listAllPeers(function(list){//薬剤師側機能
+          console.log(list);//[]
+          var isArray=list instanceof Array;
+          console.log(isArray);//false
+          for(var cnt=0;cnt<list.length;cnt++){
+              console.log(+list[cnt]+",");
+          }
+          if(document.getElementById('my-id').textContent !=list[0]){
+            document.getElementById('their-id').textContent=list[0];//自動ID入力
+          }
+        });
+        sendTrigger.addEventListener('click', onClickSend);
+        imageTrigger.addEventListener('click', imageSend);
+      });
+  
+      dataConnection.on('data', data => {
+        messages.textContent += `患者さん: ${data}\n`;
+      });
+  
+      dataConnection.once('close', () => {
+        messages.textContent += `=== Recoとの接続が解除されました ===\n`;
+        sendTrigger.removeEventListener('click', onClickSend);
+      });
+  
+      // Register closing handler
+      closeTrigger.addEventListener('click', () => dataConnection.close(), {
+        once: true,
+      });
+  
+      function onClickSend() {
+        const data = localText.value;
+        dataConnection.send(data);
+  
+        messages.textContent += `あなた: ${data}\n`;
+        localText.value = '';
+      }
+      function imageSend() {
+        const data = outputImage.src;
+        console.log(data);
+        dataConnection.send(data);
+  
+        messages.textContent += `あなた: 画像を送信しました\n`;
+        localText.value = '';
+      }
+    });
+  
+    const status=document.getElementById("status");//画像選択
+    const output=document.getElementById("output");
+    if (window.FileList && window.File && window.FileReader) {
+      document.getElementById('avatar').addEventListener('change', e => {
+        output.src = '';
+        status.textContent = '';
+        const file = e.target.files[0];
+        if (!file.type) {
+          status.textContent = 'Error: The File.type property does not appear to be supported on this browser.';
+          return;
+        }
+        if (!file.type.match('image.*')) {
+          status.textContent = 'Error: The selected file does not appear to be an image.'
+          return;
+        }
+        const reader = new FileReader();
+        reader.addEventListener('load', e => {
+          output.src = e.target.result;
+        });
+        reader.readAsDataURL(file);
+      }); 
+    }
+    
+    
+  //ポップアップ
+  myJpeg = new Array(
+    // 新しいウィンドで表示する画像のURL, タイトル, 画像の幅, 画像の高さ
+    //remote accsess
+    "/public/medicine/naron-back.PNG", "ナロンエース", 900, 700,
+    "/public/medicine/naronm-back.PNG", "ナロンエースメディカル", 900, 700,
+    "/public/medicine/naronr-back.PNG", "ナロンエースR", 900, 700,
+    "/public/medicine/naronroyal-back.PNG", "ナロンエースロイヤル", 900, 700,
+    "/public/medicine/kanpo-back.PNG", "大正漢方胃腸薬", 900, 700,
+    "/public/medicine/kanpoactive-back.PNG", "大正漢方胃腸薬アクティブ", 900, 700,
+    "/public/medicine/bio-back.PNG", "新ビオフェルミンS錠", 900, 700,
+    "/public/medicine/bioplus-back.PNG", "新ビオフェルミンS錠プラス", 900, 700,
+    "/public/medicine/pab-back.PNG", "パブロンゴールドA", 900, 700,
+    "/public/medicine/pabron-back.PNG", "パブロンエースPro錠", 900, 700
+    
+    );
+  
+    function myGo(myTblNo){
+    myAry = myTblNo * 4;                     // 配列の先頭
+    console.log("myAry"+myAry);
+    myXX=myJpeg[myAry+2];              // ウィンドウ横幅
+    myYY=myJpeg[myAry+3];              // ウィンドウ縦幅
+    myWinName = "Win" + myTblNo;                       // ウィンドウ名
+    myWinSize = "resizable=yes,width=" + myXX + ",height=" + myYY; // ウィンドウオプション
+    myWin = window.open("" , myWinName , myWinSize); // ウィンドウを開く
+    myWin.document.open("","_top");
+    myWin.document.write( "<html>" );
+    myWin.document.write( "<head>" );
+    myWin.document.write( "<title>", myJpeg[myAry+1] , "</title>" );
+    myWin.document.write( "</head>" );
+    myWin.document.write( "<body style='text-align:center'>" );
+    myWin.document.write( "<img src='" , myJpeg[myAry] , "'width=500px,height=500px>" );
+    myWin.document.write("<h1>終了するときは右上の✕を押してください</h1>");
+    myWin.document.write( "</body>" );
+    myWin.document.write( "</html>" );
+    myWin.document.close();
+    myWin.moveTo(500,500);//windowの位置
+  }myJpeg = new Array(
+    // 新しいウィンドで表示する画像のURL, タイトル, 画像の幅, 画像の高さ
+    //remote accsess
+    "/public/medical/luna/luna-memo1.PNG", "バファリンルナ", 900, 1200,"/public/medical/luna/luna-memo2.PNG","/public/medical/luna/  luna-memo3.PNG","バファリン ルナ 40錠 1,188円",
+    "/public/medical/naronar/naron-r-memo1.png", "ナロンエースR", 900, 1200,"/public/medical/naronar/naron-r-memo2.png","/public/medical/  naronar/naron-r-memo3.png","ナロンエースR 16錠 760円",
+    "/public/medical/naronat/naron-t-memo1.png", "ナロンエースT", 900, 1200,"/public/medical/naronat/naron-t-memo2.png","/public/medical/  naronat/naron-t-memo3.png","ナロンエースT 24錠 820円",
+    "/public/medical/naronal/naron-royal-memo1.png", "ナロンエースロイヤルロイヤル", 900, 1200,"/public/medical/naronal/naron-royal-memo2.png","/  public/medical/naronal/naron-royal-memo3.png","ナロンエースロイヤル 24錠 980円",
+    "/public/medical/naronm/naron-m-memo1.png","ナロンエースメディカル",900,1200,"/public/medical/naronm/naron-m-memo2.png","/public/medical/  naronm/naron-m-memo3.png","ナロンメディカル24錠 980円",
+    "/public/medical/biofegeri/biofel_geri_memo1.png", "ビオフェルミン下痢止め", 900, 1200,"/public/medical/biofegeri/biofel_geri_memo2.png","/  public/medical/biofegeri/biofel_geri_memo3.png","ビオフェルミン下痢止め 30錠 1,000円",
+    "/public/medical/biofeshiyou/biofe_stop_memo1.png", "ビオフェルミン止瀉薬", 900, 1200,"/public/medical/biofeshiyou/biofe_stop_memo2.png","/  public/medical/biofeshiyou/biofe_stop_memo3.png","ビオフェルミン止瀉薬 12包 1,200円",
+    "/public/medical/pabronap/paburon-memo1.PNG", "パブロンエースPro", 900,1200,"/public/medical/pabronap/paburon-memo2.PNG","/public/medical/  pabronap/paburon-memo3.PNG","パブロンエースPro 18錠 1,380円",
+    "/public/medical/pabronag/pabron_gold_a_memo1.png", "パブロンゴールドA", 900, 1200,"/public/medical/pabronag/pabron_gold_a_memo2.png","/  public/medical/pabronag/pabron_gold_a_memo3.png","パブロンゴールドA 130錠 1,700円",
+    "/public/medical/pabronnoseex/pabron_nosedrops_ex_memo1.png", "パブロン点鼻E", 900, 1200,"/public/medical/pabronnoseex/  pabron_nosedrops_ex_memo2.png","/public/medical/pabronnoseex/pabron_nosedrops_ex_memo3.png","パブロン点鼻Ex 15ml 891円",
+    "/public/medical/pabronnosece/pabron_nose_sa_memo1.png", "パブロン鼻炎カプセルS", 900, 1200,"/public/medical/pabronnosece/  pabron_nose_sa_memo2.png","/public/medical/pabronnosece/pabron_nose_sa_memo3.png","パブロン鼻炎カプセルSα 24カプセル 1,200円",
+    "/public/medical/pabronnoseattack/pabron_nose_attack_memo1.png","パブロン鼻炎アタックJL",900,1200,"/public/medical/pabronnoseattack/  pabron_nose_attack_memo2.png","/public/medical/pabronnoseattack/pabron_nose_attack_memo3.png","パブロン鼻炎アタックJL 8.5g 1,380円",
+    "/public/medical/pabronnosefast/pabron_fastnosedrops_ex_memo1.png","パブロン鼻炎速溶錠",900,1200,"/public/medical/pabronnosefast/  pabron_fastnosedrops_ex_memo2.png","/public/medical/pabronnosefast/pabron_fastnosedrops_ex_memo3.png","パブロン鼻炎即溶錠 48錠 1,780円"
+    );
+  
+    function myGo(myTblNo){
+    myAry = myTblNo * 7;                     // 配列の先頭
+    console.log("myAry"+myAry);
+    myXX=myJpeg[myAry+2];              // ウィンドウ横幅
+    myYY=myJpeg[myAry+3];              // ウィンドウ縦幅
+    myWinName = "Win" + myTblNo;                       // ウィンドウ名
+    myWinSize = "resizable=yes,width=" + myXX + ",height=" + myYY; // ウィンドウオプション
+    myWin = window.open("" , myWinName , myWinSize); // ウィンドウを開く
+    myWin.document.open("","_top");
+    myWin.document.write( "<html>" );
+    myWin.document.write( "<head>" );
+    myWin.document.write( "<title>", myJpeg[myAry+1] , "</title>" );
+    myWin.document.write( "</head>" );
+    myWin.document.write( "<body style='text-align:center'>" );
+    myWin.document.write( "<img src='" , myJpeg[myAry] , "'width=500px,height=500px>" );
+    myWin.document.write( "<br>" );
+    myWin.document.write( "<img src='" , myJpeg[myAry+4] , "'width=500px,height=500px>" );
+    myWin.document.write( "<br>" );
+    myWin.document.write( "<img src='" , myJpeg[myAry+5] , "'width=500px,height=500px>" );
+    myWin.document.write( "<h2>", myJpeg[myAry+6] , "</h2>" );
+    myWin.document.write( "</body>" );
+    myWin.document.write( "</html>" );
+    myWin.document.close();
+    myWin.moveTo(500,500);//windowの位置
+}
+
+  
+</script>
+</html>

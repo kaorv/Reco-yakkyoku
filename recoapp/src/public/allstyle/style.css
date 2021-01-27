@@ -1,0 +1,1221 @@
+@charset "UTF-8";
+
+/*共通部分
+--------------------------*/
+html{
+  font-size: 100%;
+
+}
+
+body{
+  font-family: "ヒラギノ角ゴ Pro W3",sans-serif;
+  background: linear-gradient(#77c9d4, #57bc90);
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  padding-top: 15vh;
+}
+
+a{
+  text-decoration: none;
+}
+
+img{
+  max-width: 100%;
+}
+
+/*index.html*/
+
+/* bluetooth.html  face.html*/
+.instruction{
+  color: #ffffff;
+  text-align: center;
+  font-size: 8vw;
+}
+
+.reco{
+  position: fixed;
+  width: 35vw;
+  top: 35vh;
+  left: 10vw;
+}
+
+.left{
+  position: fixed;
+  width: 15vw;
+  top: 45vh;
+  left: 48vw;
+}
+
+.phone{
+  position: fixed;
+  width: 25vw;
+  top: 43vh;
+  left: 65vw;
+}
+
+.page{
+  z-index: 1;
+}
+
+.page a{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-indent: -999px;
+  z-index: 2;
+}
+/* .language{
+  color: #ffffff;
+  list-style-type: none;
+  font-size: 3rem;
+  position: absolute;
+  bottom: 0;
+  right: 50px;
+} */
+
+#camera{
+  position: fixed;
+  width: 50vw;
+  top: 32vh;
+  left: 25vw;
+}
+
+
+/* search1.html */
+.headline{
+  color: #ffffff;
+  font-size: 8vw;
+}
+
+.onayami{
+  position: fixed;
+  top: 9vh;
+  left: 22vw;
+}
+
+.bubble{
+  position: fixed;
+  width:8vw;
+  top: 10vh;
+  left: 10vw;
+}
+
+
+
+.fuwapochi_btn{
+  width: 33vw;
+  display: inline-block;
+  transition: .3s ease-out;
+  padding-top: 3vh;
+}
+
+.fuwapochi_btn:active{
+  box-shadow: inset 0 0 4vw rgba(128, 128, 128, 0.1);
+  transform: translateY(0.35vh);
+}
+
+/* 202101 変更 */
+.name_search{
+  position: fixed;
+  top: 38vh;
+  left: 22vw;
+}
+
+.search_icon{
+  position: fixed;
+  top:38vh;
+  left: 10vw;
+  width: 7vw;
+}
+
+  /* 検索バー */
+.search_container{
+  position: fixed;
+  box-sizing: border-box;
+  display: block;
+  border-radius: 2.2em;
+  height: 5vh;
+  width: 40vh;
+  overflow: hidden;
+  background: #ffffff;
+  top: 52vh;
+  left: 15vw;
+}
+.search_container input[type="text"]{
+  border: none;
+  position: absolute;
+  padding-top: 0.5vh;
+  padding-left: 2.5vw;
+  font-size: 5vw;
+  color: #2f3031;
+  background: #ffffff;
+}
+.search_container input[type="text"]:focus {
+  outline: 0;
+}
+.search_container input[type="submit"]{
+  cursor: pointer;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  font-size: 5vw;
+  border: none;
+  background: none;
+  color: #a6a7b1;
+  position: fixed;
+  right: 20vw;;
+  top: 53vh;
+  outline : none;
+}
+.search_container ::-webkit-input-placeholder {
+  color: #fff;
+}
+
+
+
+
+  .white{
+    position: fixed;
+    width:8vw;
+    top: 10vh;
+    left: 10vw;
+  }
+
+  .result_headline{
+    position: fixed;
+    top: 9vh;
+    left: 22vw;
+  }
+
+  .fuwapochi_btn2{
+    width: 30vw;
+    display: inline-block;
+    transition: .3s ease-out;
+    padding-top: 6vh;
+  }
+
+  .fuwapochi_btn2:active{
+    box-shadow: inset 0 0 4vw rgba(128, 128, 128, 0.1);
+    transform: translateY(0.35vh);
+  }
+
+/* TOPへ戻る　戻る進むボタン*/
+.TOP_btn {
+	display: inline-block;
+	position: fixed;
+	width: 33.3vw;
+  height: 10vh;
+	padding: 1.2em;
+	text-align: center;
+	text-decoration: none;
+	color: #fff;
+	background: #12a7c7;
+  bottom: 0;
+  left: 33.3vw;
+  font-size: 4.3vw;
+}
+.TOP_btn:hover {
+	 opacity:0.8;
+	 cursor: pointer;
+	 text-decoration: none;
+}
+
+/* 202101 padding,color変更,font-size追加--*/
+.page_btn0 {
+	display: inline-block;
+	width: 33.3vw;
+  height: 10vh;
+	padding: 0.8em;
+	text-align: center;
+	text-decoration: none;
+	color: rgba(255, 255, 255, 1);
+  font-size: 4vw;
+	background: rgba(0, 161, 211, 0.5);
+}
+/* ------------------------------------ */
+.page_btn0:hover {
+	 opacity:0.8;
+	 cursor: pointer;
+	 text-decoration: none;
+}
+
+.page_btn1 {
+	display: inline-block;
+	width: 33.3vw;
+  height: 10vh;
+	padding: 1.2em;
+	text-align: center;
+	text-decoration: none;
+  color: #fff;
+	background: rgba(0, 161, 211, 0.5);
+}
+.page_btn1:hover {
+	 opacity:0.8;
+	 cursor: pointer;
+	 text-decoration: none;
+}
+
+.btn_left{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+.btn_Right{
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+
+.arrow{
+  width: 10vw;
+}
+/* --------------------------------------- */
+
+/* お支払いページ */
+.cash_or_edy{
+  text-align: center;
+  margin-top: 5vh;
+}
+
+
+
+/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーー */
+
+/* 完了画面 */
+h2{
+  color: #fff;
+}
+
+/* モーダルウィンドウ */
+/* 詳しくボタン */
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.content{
+    margin: 0 auto;
+    text-align: left;
+    padding: 0.2vw;
+}
+.kuwashiku{
+    width:7vw;
+    height:1.3vh;
+    position: absolute;
+    z-index: 99;
+    background:#FFFFFF;
+    text-align:center;
+    border:0.3vw solid #12A7C7;
+    color:#4F4F4F;
+    font-size:1vw;
+    font-weight:bold;
+    border-radius:20vw;
+    -webkit-border-radius:35vw;
+    -moz-border-radius:35vw;
+    transition: all 0.5s ease;
+    margin-left: -5vw;
+    margin-top: 6vh;
+}
+
+/* 商品カード */
+
+#card {
+  text-align: left;
+  z-index: 1;
+}
+.card-img {
+  /* border-radius: 5px 5px 0 0; */
+  max-width: 65%;
+  height: auto;
+  /* padding-left: 5vw; */
+}
+.card-content {
+  width: 22vw;
+  height: 18vh;
+  padding: 1vw;
+  float: left;
+  background: #fff;
+  border-radius: 2vw;;
+  box-shadow: 0 0.3vh 0.5vw #ccc;
+  margin-left: 8.5vw;
+  position:relative;
+  text-align: center;
+  margin-top: 1vh;
+
+}
+.card-title {
+  font-size: 1.8vw;
+  margin-bottom: 1vw;
+  text-align: center;
+  color: #4f4f4f;
+}
+.card-text {
+  color: #4f4f4f;
+  font-size: 2vw;
+  line-height: 1vh;
+}
+.card-warn{
+  color: #e3302f;
+  font-size: 1.5vw;
+  margin-top: 0.5vh;
+}
+.card-link {
+  border-top: 0.2vh solid #eee;
+  padding: 1.3vh 0.5vw ;
+}
+
+/* 角丸ボタン（商品下） */
+.btn--cart,
+a.btn--cart {
+  color: #fff;
+  background-color: #12a7c7;
+  font-size: 2vw;
+  padding: 0.8vh 2vw;
+  text-align: center;
+}
+.btn--cart:hover,
+a.btn--cart:hover {
+  color: #fff;
+  background-color: #00aab1;
+}
+
+.btn--soudan,
+a.btn--soudan {
+  color: #fff;
+  background-color: #00a1d3;
+  font-size: 2vw;
+  padding: 0.8vh 2vw;
+  text-align: center;
+}
+.btn--soudan:hover,
+a.btn--soudan:hover {
+  color: #fff;
+  background-color: #0387b0;
+}
+
+.btn--cart2,
+a.btn--cart2 {
+  color: #fff;
+  background-color: #205072;
+  font-size: 4vw;
+  padding: 2vh 10vw;
+  position: fixed;
+  bottom: 15vh;
+  width: 70vw;
+  left: 15vw;
+  text-align: center;
+  box-shadow: 0 1vw 1vw 0 rgba(0, 0, 0, 0.15);
+}
+.btn--cart2:hover,
+a.btn--cart2:hover {
+  color: #fff;
+  background-color: #12a7c7;
+}
+
+a.btn--radius {
+   border-radius: 150vh;
+}
+
+.video2 {
+  position: absolute;
+  width: 28vw;
+  height: 16vh;
+  top: 58vh;
+  left: 35vw;
+  background: #00a1d3;
+}
+
+.video2::after{
+  position: relative;
+  top: -9vh;
+  width: 28vw;
+  height: 16vh;
+  border: 1vw solid #32b1ba;
+}
+
+.fa-video2{
+  position: relative;
+  top: 3.5vh;
+}
+
+.soudan{
+  position: relative;
+  top: 3vh;
+  font-size: 3vw;
+}
+/* モーダル */
+
+.modal{
+    display: none;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+}
+.modal__bg{
+    background: rgba(0,0,0,0.5);
+    height: 100vh;
+    position: absolute;
+    width: 100%;
+}
+
+.modal__content{
+    background: #fff;
+    left: 50%;
+    padding: 40px;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 60%;
+}
+
+/* カウント */
+.quantity {
+  display: inline-block;
+  text-decoration: none;
+  color: #12A7C7;
+  width: 3vw;
+  height: 3vw;
+  line-height: 1vw;
+  border-radius: 50%;
+  border: solid 0.3vw #12A7C7;
+  text-align: center;
+  overflow: hidden;
+  font-weight: bold;
+  transition: .4s;
+}
+
+.quantity:hover {
+  background: #cbecf2;
+}
+
+.number{
+  color: #4f4f4f;
+  font-size: 2vw;
+  text-align: center;
+  width: 5vw;
+}
+
+.trash{
+  width: 3vw;
+  position: relative;
+  left: 6.5vw;
+  top: -3.5vw;
+
+}
+
+/* ２０２１０１変更ーーーーーーーーーーーーーーーーーーーーーー */
+.total_price{
+  color: #fff;
+  position: absolute;
+  right: 10vw;
+  top: 38vh;
+  font-size: 4vw;
+}
+
+.btn--buy,
+a.btn--buy {
+  color: #205072;
+  background-color: #fff;
+  font-size: 4vw;
+  padding: 1.2vh 2vw;
+  position: fixed;
+  bottom: 50vh;
+  width: 40vw;
+  right: 8vw;
+  text-align: center;
+  box-shadow: 0 1vw 1vw 0 rgba(0, 0, 0, 0.15);
+  border-radius: 20vw;
+}
+.btn--buy:hover,
+a.btn--buy:hover {
+  color: #205072;
+  background-color: #cbecf2;
+}
+
+.btn--buy1,
+a.btn--buy1 {
+  color: #fff;
+  background-color: #205072;
+  font-size: 4vw;
+  padding: 1.2vh 2vw;
+  position: fixed;
+  bottom: 50vh;
+  width: 40vw;
+  left: 8vw;
+  text-align: center;
+  box-shadow: 0 1vw 1vw 0 rgba(0, 0, 0, 0.15);
+  border-radius: 20vw;
+}
+.btn--buy1:hover,
+a.btn--buy1:hover {
+  color: #fff;
+  background-color: #12a7c7;
+}
+/* ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー */
+
+/* 202101変更 ーーーーーーーーー*/
+.video3 {
+  position: relative;
+  width: 28vw;
+  height: 28vw;
+  top: 3vh;
+  /* left: 40%; */
+  background: #00a1d3;
+  margin-left: 5vw;
+  margin-right: 5vw;
+}
+.video3::after{
+  position: relative;
+  top: -6.4vh;
+  width: 23vw;
+  height: 23vw;
+  border: 0.7vw solid #32b1ba;
+}
+/* ーーーーーーーーーーーーーーーーーーー */
+
+.fa-video3{
+  position: relative;
+  top: 3.5vh;
+}
+
+.soudan1{
+  position: relative;
+  top: 3.5vh;
+  font-size: 2.5vw;
+}
+
+.cart-memo{
+  color: #fff;
+  text-align: center;
+  font-size: 5vw;
+  margin-top: 5vw;
+}
+
+.instruction2{
+  text-align: center;
+  font-size: 5vw;
+  position: relative;
+  margin-top: 3vh;
+}
+
+.thanks{
+  text-align: center;
+}
+
+.ojigi{
+  margin-top: 5vh;
+  width: 40vw;
+}
+
+.shelf{
+ position: absolute;
+ top: 0;
+ width: 100vw;
+ height: 100vh;
+ background: #ffffff;
+ z-index: 1;
+}
+.box2{
+  position: relative;
+  z-index: 2;
+  width: 100vw;
+  height: 1vh;
+  top: 9vh;
+  background: rgba(0, 0, 0, 0.1);
+}
+.box3{
+  position: relative;
+  z-index: 2;
+  width: 100vw;
+  height: 2vh;
+  background: #fff;
+  box-shadow: 0 1vw 1vw 0 rgba(0, 0, 0, 0.25);
+  top: 9vh;
+  margin-bottom: 9vh;
+}
+
+.top_category{
+  background: linear-gradient(to bottom right,#329d9c, #12A7C7);
+  color: #fff;
+  padding: 0.8vh;
+  position: absolute;
+  z-index: 3;
+  font-size: 4vw;
+}
+
+.icon_category{
+  width: 5vw;
+  position: relative;
+  top: 0.4vh;
+}
+
+.medicine{
+  position: relative;
+  display: inline-block;
+  z-index: 5;
+  width: 8vh;
+  top: 10vh;
+  margin-left: 1vh;
+}
+
+.step{
+  text-align: center;
+}
+
+.Addcart {
+	background: rgba(255, 255, 255, 0.7);
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 9000;
+  display:  inline-block;
+}
+
+.Addcart p {
+	position: fixed;
+	left: 50%;
+	top: 30%;
+	transform: translate(-50%, -50%);
+	display: none;
+	z-index: 9999;
+	/* width: px; */
+}
+
+.Addcart h1 {
+	position: fixed;
+	left: 50%;
+	top: 40%;
+	transform: translate(-50%, -50%);
+	display: none;
+	z-index: 9999;
+	/* width: px; */
+}
+
+.fa-shopping-cart{
+  color: #12a7c7;
+}
+
+.cart_message{
+  color: #12a7c7;
+  font-size: 5vw;
+}
+
+/* 10/29追加⬇︎ */
+.blink {
+  animation: blinkAnime 1.5s infinite alternate;
+  background-color: white;
+  position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 9000;
+}
+@keyframes blinkAnime{
+   0% { opacity : 0.8; }
+ 100% { opacity : 0.3; }
+}
+
+.cp_loading06 {
+	position: absolute;
+	top: 45%;
+	left: 50%;
+	width: 30vw;
+	height: 30vw;
+	-webkit-transform: translate(-50%,-50%);
+	        transform: translate(-50%,-50%);
+	border-radius: 50%;
+	background: radial-gradient(blue, #ffffff);
+  z-index: 10000;
+
+
+}
+.cp_loading06::after {
+	content: '';
+	position: absolute;
+	border-radius: 50%;
+	top: 50%;
+	left: 50%;
+	border: 0vw solid #ffffff;
+	-webkit-transform: translate(-50%, -50%);
+	        transform: translate(-50%, -50%);
+	-webkit-animation: loading06 1.5s ease-out forwards infinite;
+	        animation: loading06 1.5s ease-out forwards infinite;
+}
+@-webkit-keyframes loading06 {
+	0% {
+		border: 0 solid #f8bbd0;
+	}
+	20% {
+		width: 0;
+		height: 0;
+		border: 3vw solid #ffffff;
+	}
+	100% {
+		width: 100%;
+		height: 100%;
+		border: 0 solid #ffffff;
+	}
+}
+@keyframes loading06 {
+	0% {
+		border: 0 solid #f8bbd0;
+	}
+	20% {
+		width: 0;
+		height: 0;
+		border: 3vw solid #ffffff;
+	}
+	100% {
+		width: 100%;
+		height: 100%;
+		border: 0 solid #ffffff;
+	}
+}
+
+.tap{
+  font-size: 4vw;
+  color:#fff;
+  text-align: center;
+  position: fixed;
+  top: 8vw;
+  left: 8vw;
+
+
+}
+
+/* 下記11/5追加 */
+/* 202101変更 */
+.circle_spread_btn2 {
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  border-radius: 50%;
+  vertical-align: text-bottom;
+}
+.circle_spread_btn2:hover {
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  transition: transform .3s;
+  transform-origin: center;
+  transform: scale(0.9, 0.9);
+  opacity: 0.7;
+}
+.circle_spread_btn2::after {
+    display: inline-block;
+    content: "";
+    /* width: 49px;
+    height: 49px;
+    position: absolute; */
+   border-radius: 50%;
+ color:#fff;
+   top: -0.5px;
+   left: -0.5px;
+    border: 1px solid #40C659;
+   transition: transform .5s ease;
+  visibility: hidden;
+}
+.circle_spread_btn2:hover::after {
+   cursor: pointer;
+   text-decoration: none;
+   transition: transform .5s ease;
+  transform-origin: center;
+  transform: scale(1.4, 1.4);
+  opacity: 0.7;
+  visibility: visible;
+}
+
+
+.fa-microphone{
+  position: relative;
+  /* left: 47.5%; */
+  top: 3.5vh;
+  z-index: 10000;
+}
+
+/* 202101　変更------------- */
+.mic {
+  position: relative;
+  width: 28vw;
+  height: 28vw;
+  top: 3vh;
+  /* left: 40%; */
+  background: #205072;
+  margin-left: 18vw;
+  margin-right: 5vw;
+  opacity: 0.9;
+}
+.mic::after{
+  position: relative;
+  top: -6.4vh;
+  width: 23vw;
+  height: 23vw;
+  border: 0.7vw solid #205072;
+}
+/* ---------------------------- */
+
+.search_modal_content{
+    background: #fff;
+    left: 50%;
+    padding: 40px;
+    position: absolute;
+    top: 40%;
+    transform: translate(-50%,-50%);
+    width: 60%;
+    border-radius: 15px;
+    color: #12A7C7;
+    font-size: 3vw;
+}
+
+.modal__bg2{
+    background: rgba(0,0,0,0.7);
+    height: 100vh;
+    position: absolute;
+    width: 100%;
+
+  }
+
+  .redo {
+    position: relative;
+    width: 20vw;
+    height: 20vw;
+    top: 50vh;
+    left: 25%;
+    background: #fff;
+    border: 1vw solid #329d9c;
+  }
+
+  .fa-redo-alt{
+    position: relative;
+    color: #329d9c;
+    top: 2vh;
+  }
+
+.redo_text{
+  color: #329d9c;
+  font-size: 2.5vw;
+  position: relative;
+  top: 4vw;
+}
+
+.fa-search{
+  position: relative;
+  color: #56c596;
+  top: 2vh;
+}
+
+.search_text{
+  color: #56c596;
+  font-size: 2.5vw;
+  position: relative;
+  top: 4vw;
+}
+
+
+  .search_icon2 {
+    position: relative;
+    width: 20vw;
+    height: 20vw;
+    top: 50vh;
+    left: 35%;
+    background: #fff;
+    border: 1vw solid #56c596;
+
+  }
+
+
+
+
+/* 下記11/5変更 */
+
+  /* 円形ボタン */
+  .circle_spread_btn {
+  	display: inline-block;
+  	text-align: center;
+  	text-decoration: none;
+  	color: #fff;
+  	border-radius: 50%;
+    vertical-align: text-bottom;
+  }
+  .circle_spread_btn:hover {
+  	cursor: pointer;
+  	text-decoration: none;
+  	text-align: center;
+  	transition: transform .3s;
+  	transform-origin: center;
+  	transform: scale(0.9, 0.9);
+  	opacity: 0.7;
+  }
+  .circle_spread_btn::after {
+      display: inline-block;
+      content: "";
+      /* width: 49px;
+      height: 49px;
+      position: absolute; */
+  	 border-radius: 50%;
+   	color:#fff;
+  	 top: -0.5px;
+  	 left: -0.5px;
+      border: 1px solid #40C659;
+  	 transition: transform .5s ease;
+  	visibility: hidden;
+  }
+  .circle_spread_btn:hover::after {
+  	 cursor: pointer;
+  	 text-decoration: none;
+  	 transition: transform .5s ease;
+  	transform-origin: center;
+  	transform: scale(1.4, 1.4);
+  	opacity: 0.7;
+  	visibility: visible;
+  }
+
+/* 202101変更------------------- */
+  .video {
+    position: relative;
+    width: 28vw;
+    height: 28vw;
+    top: 3vh;
+    /* left: 40%; */
+    background: #00a1d3;
+    margin-left: 5vw;
+    margin-right: 5vw;
+  }
+  .video::after{
+    position: relative;
+    top: -6.4vh;
+    width: 23vw;
+    height: 23vw;
+    border: 0.7vw solid #32b1ba;
+  }
+/* ---------------------------- */
+
+  .fa-video{
+    position: relative;
+    top:3.5vh;
+  }
+
+  .video_icon{
+    position: fixed;
+    width:8vw;
+    top: 63vh;
+    left: 10vw;
+    color: #fff;
+  }
+
+  .video_soudan{
+    position: fixed;
+    top: 62vh;
+    left: 22vw;
+
+  }
+
+
+
+/* 202101変更 */
+
+/* .pageと.page a削除しました */
+
+.payment_btn{
+  /* text-align: center; */
+  display:flex;
+  justify-content:center;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+/* 202101  追加 */
+.pass_message{
+  position: relative;
+  color: #fff;
+  font-size: 5vw;
+  top: 40vw;
+  text-align: center;
+}
+
+.pass_text{
+  color: #329d9c;
+  font-size: 4vw;
+  position: relative;
+  top: 5.5vw;
+
+}
+
+.continue_text{
+  color: #56c596;
+  font-size: 4vw;
+  position: relative;
+  top: 5.5vw;
+}
+
+.pass_btn {
+  position: relative;
+  width: 20vw;
+  height: 20vw;
+  top: 30vh;
+  left: 25%;
+  background: #fff;
+  border: 1vw solid #329d9c;
+}
+
+.continue_btn {
+  position: relative;
+  width: 20vw;
+  height: 20vw;
+  top: 30vh;
+  left: 35%;
+  background: #fff;
+  border: 1vw solid #56c596;
+}
+
+.btn-square-pop {
+  position: relative;
+  display: inline-block;
+  padding: 0.25em 0.5em;
+  text-decoration: none;
+  color: #00a8af;
+  background: #fff;/*背景色*/
+  border-radius: 1.5vw;/*角の丸み*/
+  box-shadow: inset 0 0.8vw 0 rgba(255,255,255,0.2), 0 0.8vw 0.8vw rgba(0, 0, 0, 0.19);
+  font-weight: bold;
+  width: 35vw;
+  height: 15vw;
+  margin-bottom: 1.5vw;
+  margin-left: 3vw;
+  margin-right: 3vw;
+  margin-top: 2vw;
+  font-size: 5vw;
+}
+
+.btn-square-pop:active {
+  box-shadow: 0 0 0.8vw rgba(0, 0, 0, 0.30);
+}
+
+.headline2{
+  font-size: 7vw;
+  color: #fff;
+}
+
+.category2{
+  text-align: center;
+}
+
+.headache_c{
+  position: relative;
+  width: 8vw;
+  left: -4vw;
+  top: 2.5vw;
+}
+
+.stomach_c{
+  position: relative;
+  width: 8vw;
+  left: -4vw;
+  top: 2.5vw;
+}
+
+.cold_c{
+  position: relative;
+  width: 8vw;
+  left: -4vw;
+  top: 2.5vw;
+}
+
+.nose_c{
+  position: relative;
+  width: 8vw;
+  left: -4vw;
+  top: 2.5vw;
+}
+
+.search_btn2{
+  text-align: center;
+  margin-top: 35vh;
+}
+
+.search_v{
+  position: relative;
+  text-align: center;
+  top: 3vw;
+  font-size: 3.8vw;
+}
+
+.instruction3{
+  color: #ffffff;
+  text-align: center;
+  font-size: 7vw;
+}
+
+.total_price2{
+  color: #fff;
+  position: absolute;
+  right: 10vw;
+  top: 50vh;
+  font-size: 4vw;
+}
+
+.btn--pay,
+a.btn--pay {
+  color: #fff;
+  background-color: #205072;
+  font-size: 3vw;
+  padding: 1vh 15vw;
+  text-align: center;
+  position: relative;
+  top: 5vw;
+}
+.btn--pay:hover,
+a.btn--pay:hover {
+  color: #fff;
+  background-color: #329d9c;
+}
+
+.coin_img{
+  position: relative;
+  top: 1.2vw;
+  right: 3vw;
+  width: 7vw;
+}
+
+.edy_img{
+  position: relative;
+  top: 1.4vw;
+  right: 3.5vw;
+  width: 9vw;
+}
+
+
+/* 0119_中野追加 */
+
+form.btn--radius {
+  border-radius: 150vh;
+}
+
+.search_v_cart{
+  position: relative;
+  text-align: center;
+  top: 5vw;
+  font-size: 3.8vw;
+}
+
+.search_btn{
+  /* text-align: center; */
+  display:flex;
+  justify-content:center;
+  flex-direction: row;
+  align-items: center;
+}
+
+
+
+/* ------------ */

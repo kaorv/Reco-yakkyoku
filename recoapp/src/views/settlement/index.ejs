@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <title>RECO薬局-カート</title>
+  <%- include("../_share/link.ejs") %>
+</head>
+<body>
+<div>
+  <img src="/public/uiimages/cart2.png" alt="カート" class="white">
+  <h1 class="headline result_headline">カート</h1>
+</div>
+
+
+<!-- 商品カード -->
+<%- include("../_share/settlementpage_card.ejs") %>
+
+<!-- モーダル -->
+<%- include("../_share/modal.ejs") %>
+
+<script>
+  $(function() {
+    setTimeout(function(){
+      $('.Addcart p').fadeIn(1600);
+    },100); //0.5秒後にロゴをフェードイン!
+    setTimeout(function(){
+      $('.Addcart h1').fadeIn(1600);
+    },100); //0.5秒後にロゴをフェードイン!
+    setTimeout(function(){
+      $('.Addcart').fadeOut(500);
+    },2000); //2.5秒後にロゴ含め真っ白背景をフェードアウト！
+  });
+</script>
+
+</body>
+</html>
+
+

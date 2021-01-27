@@ -1,0 +1,211 @@
+body{
+    font-family: "ヒラギノ角ゴ Pro W3",sans-serif;
+    background: linear-gradient(#77c9d4, #57bc90);
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    
+  }
+#video{
+    text-align:center;
+    position:sticky;
+    top:0px;
+    margin:0px;
+    padding:0px;
+}
+#tell{
+    text-align:center;
+}
+#my-information{
+    text-align:center;
+}
+#pharmacist p{
+    margin-top:0px;
+    margin-bottom:30px;
+}
+#their-video{
+    background-color: black;
+    height:400px;
+    width:600px;
+}
+#share-video{
+    height:200px;
+    width:400px;
+    background-color:black;
+}
+#my-information{
+    margin-top:30px;
+
+}
+#my-video{
+    transform: scale(-1,1);
+}
+.button{
+    color:blue;
+    font-size:19px;
+}
+#your-name{
+    margin:10px 15px 10px 10px;
+}
+#make-call{
+    position: absolute;
+    left:500px;
+    display: inline-block;
+  text-decoration: none;
+  background: #87befd;
+  color: #FFF;
+  width: 50px;
+  height: 50px;
+  line-height: 120px;
+  border-radius: 50%;
+  text-align: center;
+  overflow: hidden;
+  transition: .4s;
+}
+#close-call{
+    position: absolute;
+    left:570px;
+    display: inline-block;
+  text-decoration: none;
+  background: #FF0066   ;
+  color: #FFF;
+  width: 50px;
+  height: 50px;
+  line-height: 120px;
+  border-radius: 50%;
+  text-align: center;
+  overflow: hidden;
+  transition: .4s;
+    
+}
+
+ul{
+    list-style-type:none;
+}
+
+#type{
+    margin-top:10px;
+}
+#chatbox{
+    height:200px;
+    width:30%;
+    overflow:scroll;
+    background-color:#EEE
+}
+#text{
+    margin:10px 0px 0px 0px;
+}
+#send-trigger{
+    position: relative;
+    top: 5px;
+    width:20px;
+    height:20px;
+    margin:0px 0px 0px 0px;
+}
+#output{
+    width:200px;
+    height:200px;
+    border:solid 2px #EEE;
+}
+#type{
+    font-size: 20px;
+    font-family: "ヒラギノ角ゴ Pro W3",sans-serif;
+}
+.buy{
+    margin:0px 0px 0px 30px;
+    display: inline-block;
+  padding: 7px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  color: black;
+  background-image: linear-gradient(45deg, #FFC107 0%, #ff8b5f 100%);
+  transition: .4s;
+}
+/*以下追加*/
+#fanction{
+    position: relative;
+    border-style: solid;
+    border-color: #EEE;
+    
+    background-color:#DCDCDC;
+    width:55%;
+    height:50px;
+    margin:0px 0px 0px 450px;
+    left:-150px;
+}
+ #fanction p{
+    position: absolute;
+    top:3px;
+
+}
+#their-id{
+     position: absolute; 
+    left:300px;
+    top:10px;
+} 
+#share-screen,#share-finish{
+     position: absolute; 
+    left:660px;
+    top:10px;
+    display: inline-block;
+    padding: 7px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    color: black;
+    background-image: linear-gradient(45deg, white 0%,white 100%);
+    transition: .4s;
+  
+}
+#share-screen,#share-finish:hover{
+    background-image: linear-gradient(45deg, white 0%, white 100%);
+}
+#buy-bottom{
+    margin:0px 0px 0px -30px;
+    padding-left:10px;
+    width:1000px;
+    
+}
+
+/*----------------------カートのモーダル処理----------------------*/
+
+.Addcart {
+  background: rgba(255, 255, 255, 0.7);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 9000;
+  display:  inline-block;
+}
+
+.Addcart p {
+  position: fixed;
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%, -50%);
+  display: none;
+  z-index: 9999;
+  /* width: px; */
+}
+
+.Addcart h1 {
+  position: fixed;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -50%);
+  display: none;
+  z-index: 9999;
+  /* width: px; */
+}
+
+.fa-shopping-cart{
+  color: #12a7c7;
+}
+
+.cart_message{
+  color: #12a7c7;
+  font-size: 5vw;
+}
+
+/*------------------------------------------------------------------*/

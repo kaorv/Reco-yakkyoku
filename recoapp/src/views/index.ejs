@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>top</title>
+  <title>RECO薬局-検索画面1</title>
+<!-- CSS -->
+  <link rel="stylesheet" href="/public/allstyle/ress.min.css">
+  <link href="/public/allstyle/style.css" rel="stylesheet">
+  <link href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.2.1/font-awesome-animation.min.css" type="text/css" media="all" />
+  <script type="text/javascript" src="/public/allstyle/jquery.min.js"></script>
+</head>
+<body>
+
+  <!-- お悩みから探す -->
+  <div>
+    <img src="/public/uiimages/bubble.png" alt="吹き出し" class="bubble">
+    <h1 class="headline onayami">お悩みから探す</h1>
+  </div>
+
+  <div class="category2">
+    <form action="/searchresulttype/" method="get">
+      <% for(let i in content) { %>
+      <tr>
+          <% let obj = content[i]; %>
+          <th>
+            <button type="submit" name="type" class="btn-square-pop" value="<%= obj.type1 %>"><img src="<%= obj.srcurl %>" class="headache_c" alt="<%= obj.type1 %>" /><%= obj.type1 %></button>
+          </th>
+      </tr>
+      <% } %>
+      
+    </form>
+  </div>
+
+
+
+<div style="display:inline-flex;width:100%;">
+<!-- お薬の名前から探す -->
+  <form method="get" action="/searchresultkey/" name="form1">
+    <a class="content js-modal-open" data-target="modal01"><div type="button" id="voicebutton" class="circle_spread_btn2 mic"><i class="fas fa-microphone fa-5x faa-vertical animated"><p class="search_v">名前で検索</p></i></div></a>
+   <div id="modal01" class="modal js-modal">
+        <div class="modal__bg2 js-modal-close"></div>
+        <!-- このコメントを外せば音声で聞き返してくれる -->
+        <!-- <div class="search_modal_content" id="result">喋りかけてください</div> -->
+        <input class="search_modal_content" name="word" id="result" placeholder="" inputmode >
+        <div class="circle_spread_btn redo"><i type="button" id="reloadbutton" class="fas fa-redo-alt fa-4x"></i>
+          <p class="redo_text">やりなおす</p>
+        </div>
+        <button type="submit" class="circle_spread_btn search_icon2"><i class="fas fa-search fa-4x"></i>
+          <p class="search_text">検索</p>
+        </button>
+    </div>
+  </form>
+<!-- ビデオ通話で相談 -->
+  <div>
+    <form method="get" action="/webconf/">
+      <input type="hidden" name="backpage" value="top">
+
+      <button type="submit" class="circle_spread_btn video"><i class="fas fa-video fa-5x faa-float animated"><p class="search_v">薬剤師に相談</p></i></button>
+    </form>
+  </div>
+</div>
+  
+
+
+
+  <footer>
+    <form action="/logout/">
+      <button type="submit" class="page_btn0 btn_left" value="logout">買い物やめる</button>
+    </form>
+    <form action="/settlement/" method="get">
+      <input type=hidden name="pageflag" value="top">
+      <input type="submit" class="TOP_btn" value="決済へ進む">
+    </form>
+    <form action="">
+      <button type="submit" class="page_btn0 btn_Right" value=""></button>
+    </form>
+  </footer>
+
+<script>
+  let button = document.getElementById('voicebutton');
+  let reloadbutton = document.getElementById('reloadbutton');
+  let speech = new webkitSpeechRecognition();
+  let result = document.getElementById('result');
+  
+  button.onclick = () => {
+    speech.start();
+    document.forms['form1'].elements['result'].value = 'お探しの薬を教えてください'
+    speech.onresult = function (e) {
+      speech.stop();      
+      if (e.results[0].isFinal) {
+        document.forms['form1'].elements['result'].value = e.results[0][0].transcript;
+      }
+    } 
+  }
+
+  reloadbutton.onclick = () => {
+    speech.start();
+    document.forms['form1'].elements['result'].value = 'お探しの薬を教えてください'
+    speech.onresult = function (e) {
+      speech.stop();      
+      if (e.results[0].isFinal) {
+        document.forms['form1'].elements['result'].value = e.results[0][0].transcript;
+      }
+    }
+  }
+
+  $(function(){
+    $('.js-modal-open').each(function(){
+      $(this).on('click',function(){
+          var target = $(this).data('target');
+          var modal = document.getElementById(target);
+          $(modal).fadeIn();
+          return false;
+      });
+    });
+    $('.js-modal-close').on('click',function(){
+      $('.js-modal').fadeOut();
+      return false;
+    });
+  });
+</script>
+</body>
+</html>

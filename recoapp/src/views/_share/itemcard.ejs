@@ -1,0 +1,76 @@
+<!-- 商品カード -->
+<% var countup = 0; %>
+<% for(let i in content) { %>
+  <% let obj = content[i]; %>
+  <% var countup = countup + 1 %>
+  <section id="card">
+    <div class="card-content">
+      <img class="card-img" src="<%= obj.link %>" alt="商品">
+      <a class="content js-modal-open kuwashiku" data-target="modal0<%= countup %>">くわしく▶︎</a>
+      <h1 class="card-title"><%= obj.item %></h1>
+      <p class="card-text">¥<%= obj.value %></p>
+      <!-- 飲み合わせ禁止flag初期化 -->
+      <% let alertflag = 0; %>
+      <!-- カートの中身のitem数をカウントする -->
+      <% let cartitemnum = 0; %>
+      <% let buyitemnum = 0; %>
+      <!-- コメント数合わせのflag -->
+      <% let commentflag = 0; %>
+      
+      <!-- カートの中身の商品数をcartitemnumに格納する.nullが入ってきた場合0を代入する. -->
+      <% if (obj.cartcount >= 0){ %>
+        <% cartitemnum = cartitemnum + obj.cartcount %>
+      <% } else { %>
+        <% cartitemnum = 0; %>
+      <% } %>
+
+      <!-- 10日以内の購入履歴の商品数をbuyitemnumに格納する.nullが入ってきた場合0を代入する. -->
+      <% if (obj.buycount >= 0){ %>
+        <% buyitemnum = buyitemnum + obj.buycount %>
+      <% } else { %>
+        <% buyitemnum = 0; %>
+      <% } %>
+
+      <!-- 飲み合わせ禁止 -->
+      <% for (let j in list){ %>
+        <% let lists = list[j]; %>
+        <% if (lists.item === obj.Ban){ %>
+          <% if (alertflag==0){ %>
+            <p class="card-warn"><%= obj.Ban %>との併用が危険です。</p>
+            <% alertflag = 1 %>
+          <% } %>
+        <% } %>
+      <% } %>
+
+      <!-- 制限個数を超えた場合コメントを表示 -->
+      <!-- 商品の10日以内に購入した数とカートに入っている数を合計して制限個数を超えていないかを確認 -->
+      <% if (obj.limitednum <= buyitemnum + cartitemnum){ %>
+        <p class="card-warn">制限個数を超えています。</p>
+      <% } %>
+      <div class="card-link">
+        <!-- 制限個数を超えているまたは飲み合わせ禁止である場合は薬剤師へ相談 -->
+        <% if (obj.limitednum <= buyitemnum + cartitemnum || alertflag!==0){ %>
+          <form action="/webconf/" method="get" class="btn--soudan btn--radius">
+            <input type="hidden" name="backpage" value="result">
+            <button type="submit">薬剤師へ相談</button>
+          </form>
+        <% }else{ %>
+          <form action="/addcart/" method="get" class="btn--cart btn--radius">
+            <input type="hidden" name="itemname" value="<%= obj.item %>" >
+            <input type="hidden" name="itemvalue" value="<%= obj.value %>" >
+            <button type="submit" >カートにいれる</button>
+          </form>
+        <% } %>
+      </div>
+    </div>
+    </section>
+    <div id="modal0<%= countup %>" class="modal js-modal">
+      <div class="modal__bg js-modal-close"></div>
+      <div class="modal__content">
+        <img src="<%= obj.modallink1 %>" alt="詳細">
+        <img src="<%= obj.modallink2 %>" alt="詳細">
+        <img src="<%= obj.modallink3 %>" alt="詳細">
+        <a class="js-modal-close" href="">閉じる</a>
+      </div>
+   </div>
+<% } %>

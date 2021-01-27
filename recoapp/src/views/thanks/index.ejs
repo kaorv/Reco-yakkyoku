@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <title>RECO薬局-完了画面</title>
+  <%- include("../_share/link.ejs") %>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <h1 class="instruction">ありがとうございました</h1>
+      <h2 class="instruction2" >商品の取り忘れにご注意ください</h2>
+    </header>
+
+    <div class="thanks">
+      <img src="/public/uiimages/ojigi.png" alt="お辞儀" class="ojigi">
+    </div>
+
+    <a href="<%= 'https://' + host + ':49160/logout' %>"></a>
+  </div>
+</body>
+</html>

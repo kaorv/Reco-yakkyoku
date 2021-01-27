@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <title>RECO薬局-在庫</title>
+    <%- include("../_share/link.ejs") %>
+  </head>
+  <body>
+    <a href="<%= 'http://' + recolocalhost + ':8080/top/' %>"><div class="cp_loading06 blink"><h1 class="tap" >ここを<br>タップ</h1></div></a>
+    <div class="page">
+      <div class="shelf">
+      <% for(let i in symptomlist) { %> 
+        <% let symptom = symptomlist[i]; %>
+        <h1 class=top_category><img src="<%= symptom.srcurl2 %>" alt="<%= symptom.type1 %>" class="icon_category"> <%= symptom.type1 %>に効くお薬　</h1>
+        <div class="step">
+        <% for(let j in itemlist) { %> 
+          <% let item = itemlist[j]; %>
+          <% if (item.type1 == symptom.type1 || item.type2 == symptom.type1){ %>
+            <img src="<%= item.link %>" alt="<%= item.item %>" class="medicine">
+          <% } %>
+        <% } %>
+        </div>
+        <div class="box2"></div>
+        <div class="box3"></div>
+      <% } %>
+
+         <h1 class=top_category><img src="#" alt="" class="icon_category"> その他 </h1>
+          <div class="step">
+            
+          </div>
+          <div class="box2"></div>
+          <div class="box3"></div>
+      </div>
+    </div>
+  </body>
+</html>

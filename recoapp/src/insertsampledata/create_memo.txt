@@ -1,0 +1,215 @@
+
+//ユーザ情報
+CREATE TABLE todo.userinfo (
+    userid INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    username VARCHAR(50),
+    email VARCHAR(50),
+    password CHAR(50),
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    health_URL TEXT,
+    face_URL TEXT
+);
+
+//購買情報
+CREATE TABLE todo.buy (
+    id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    userid INT NOT NULL,
+    buyitem VARCHAR(50),
+    buydate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    phar VARCHAR(50)
+);
+
+//症状
+CREATE TABLE todo.symptom (
+    type1 VARCHAR(50) NOT NULL,
+    description TEXT NOT NULL
+);
+
+//薬一覧
+CREATE TABLE todo.item (
+    itemid INT AUTO_INCREMENT NOT NULL PRIMARY KEY ,
+    item VARCHAR(50) NOT NULL,
+    value INT NOT NULL,
+    description TEXT NOT NULL,
+    type1 VARCHAR(50) NOT NULL,
+    type2 VARCHAR(50),
+    type3 VARCHAR(50),
+    Ban TEXT,
+    limitednum INT
+);
+
+//カート
+CREATE TABLE todo.cart (
+    addid INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    item VARCHAR(50) NOT NULL,
+    value INT NOT NULL,
+    phar VARCHAR(50)
+);
+
+//recoの在庫情報
+CREATE TABLE todo.recostock (
+    venderid INT NOT NULL PRIMARY KEY,
+    item VARCHAR(50) NOT NULL,
+    stocknum INT NOT NULL
+);
+
+
+//database構造
+
+mysql> show tables;
++----------------+
+| Tables_in_todo |
++----------------+
+| buy            |
+| cart           |
+| item           |
+| recostock      |
+| symptom        |
+| userinfo       |
++----------------+
+6 rows in set (0.00 sec)
+
+
+mysql> show columns from buy;
++---------+-------------+------+-----+-------------------+----------------+
+| Field   | Type        | Null | Key | Default           | Extra          |
++---------+-------------+------+-----+-------------------+----------------+
+| id      | int(11)     | NO   | PRI | NULL              | auto_increment |
+| userid  | int(11)     | NO   |     | NULL              |                |
+| buyitem | varchar(50) | YES  |     | NULL              |                |
+| buydate | timestamp   | NO   |     | CURRENT_TIMESTAMP |                |
+| phar    | varchar(50) | YES  |     | NULL              |                |
++---------+-------------+------+-----+-------------------+----------------+
+5 rows in set (0.01 sec)
+
+mysql> show columns from cart;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| addid | int(11)     | NO   | PRI | NULL    | auto_increment |
+| item  | varchar(50) | NO   |     | NULL    |                |
+| value | int(11)     | NO   |     | NULL    |                |
+| phar  | varchar(50) | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> show columns from item;
++-------------+-------------+------+-----+---------+----------------+
+| Field       | Type        | Null | Key | Default | Extra          |
++-------------+-------------+------+-----+---------+----------------+
+| itemid      | int(11)     | NO   | PRI | NULL    | auto_increment |
+| item        | varchar(50) | NO   |     | NULL    |                |
+| value       | int(11)     | NO   |     | NULL    |                |
+| description | text        | NO   |     | NULL    |                |
+| type1       | varchar(50) | NO   |     | NULL    |                |
+| type2       | varchar(50) | YES  |     | NULL    |                |
+| type3       | varchar(50) | YES  |     | NULL    |                |
+| Ban         | text        | YES  |     | NULL    |                |
+| limitednum  | int(11)     | YES  |     | NULL    |                |
++-------------+-------------+------+-----+---------+----------------+
+9 rows in set (0.01 sec)
+
+mysql> show columns from recostock;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| venderid | int(11)     | NO   | PRI | NULL    |       |
+| item     | varchar(50) | NO   |     | NULL    |       |
+| stocknum | int(11)     | NO   |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> show columns from symptom;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| type1       | varchar(50) | NO   |     | NULL    |       |
+| description | text        | NO   |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> show columns from userinfo;
++------------+-------------+------+-----+-------------------+----------------+
+| Field      | Type        | Null | Key | Default           | Extra          |
++------------+-------------+------+-----+-------------------+----------------+
+| userid     | int(11)     | NO   | PRI | NULL              | auto_increment |
+| username   | varchar(50) | YES  |     | NULL              |                |
+| email      | varchar(50) | YES  |     | NULL              |                |
+| password   | char(50)    | YES  |     | NULL              |                |
+| created_at | timestamp   | NO   |     | CURRENT_TIMESTAMP |                |
+| health_URL | text        | YES  |     | NULL              |                |
+| face_URL   | text        | YES  |     | NULL              |                |
++------------+-------------+------+-----+-------------------+----------------+
+7 rows in set (0.00 sec)
+
+
+
+//sampledata
+
+mysql> select * from userinfo;
++--------+----------+-----------------+----------+---------------------+------------+----------+
+| userid | username | email           | password | created_at          | health_URL | face_URL |
++--------+----------+-----------------+----------+---------------------+------------+----------+
+|      1 | asida    | japan@email.com | pass     | 2020-07-18 15:47:31 | NULL       | NULL     |
++--------+----------+-----------------+----------+---------------------+------------+----------+
+1 row in set (0.00 sec)
+
+mysql> select * from item;
++--------+------+-------+-------------------------------------------------------+-------------+----------+-------+------+------------+
+| itemid | item | value | description                                           | type1       | type2    | type3 | Ban  | limitednum |
++--------+------+-------+-------------------------------------------------------+-------------+----------+-------+------+------------+
+|      1 | A    |   700 | This medicine is a headache medicine.                 | headache    | NULL     | NULL  | B    |          2 |
+|      2 | B    |  1000 | This medicine is a stomachache medicine.              | stomachache | NULL     | NULL  | A    |          3 |
+|      3 | C    |  1200 | This medicine is a stomachache and headache medicine. | stomachache | headache | NULL  | NULL |          1 |
++--------+------+-------+-------------------------------------------------------+-------------+----------+-------+------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from symptom;
++-------------+---------------------------------+
+| type1       | description                     |
++-------------+---------------------------------+
+| headache    | This symptom was a headache.    |
+| stomachache | This symptom was a stomachache. |
++-------------+---------------------------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from recostock;
++----------+------+----------+
+| venderid | item | stocknum |
++----------+------+----------+
+|       28 | C    |       15 |
+|       29 | B    |       20 |
+|       30 | A    |       10 |
++----------+------+----------+
+3 rows in set (0.01 sec)
+
+症状一覧
+
+・頭痛
+・お腹
+・風邪
+・鼻炎
+
+
+薬一覧
+
+30 ナロンメディカル 700
+29 ナロンエースR 1000
+28 ナロンエースT 1000
+27 luna 1000
+26 パブロンゴールドA 700
+25 ナロンエースロイヤル 1780
+24 鼻炎カプセルSα 1530
+23 パブロン点鼻Ex 891
+22 パブロン鼻炎速溶錠ex 1780
+21 鼻炎カプセルSα小児用 2000
+20 鼻炎アタックJL 2000
+19 ビオフェルミン下痢止め 2000
+18 ビオフェルミン止瘍薬 1200
+
+
+
+
+
+
+

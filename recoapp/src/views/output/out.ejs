@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <title>top</title>
+  <%- include("../_share/link.ejs") %>
+</head>
+<body>
+
+
+<% for(let i in cartcount) { %> 
+ <% let obj = cartcount[i]; %> 
+ <h1 class="instruction">残り</h1><h1 h1 class="instruction" id="cartcount"><%= obj.count %></h1>
+ <h2 class="instruction2">5秒ほどで排出されますので、商品をお取りください。</h2>
+<% } %>
+
+<% for(let i in cartdata) { %> 
+ <% let obj = cartdata[i]; %> 
+ <p id="vendernum"><%= obj.venderid %></p>
+<% } %>
+
+<textarea id="textarea" readonly ></textarea>
+
+
+<script src="/public/client.js" ></script>
+
+<script>
+    // WebSocketのクライアントの生成
+    let vc = new VendingClient();
+    vc.addEventListener('FinishInitialize', onFinishInitialize);
+    vc.addEventListener('NotifyAllData', onNotifyAllData);
+    vc.addEventListener('ChangeSoldOut', onChangeSoldOut);
+    vc.addEventListener('NotifyEject', onNotifyEject);
+    vc.addEventListener('NotifyDoorOpen', onNotifyDoorOpen);
+    vc.addEventListener('NotifyDoorClose', onNotifyDoorClose);
+    vc.addEventListener('NotifyKeepAlive', onNotifyKeepAlive);
+    function onFinishInitialize(data) {
+        print("初期化が完了しました\n");
+    }
+    function onNotifyAllData(data) {
+        print("商品データが通知されました\n");
+    }
+    function onChangeSoldOut(data) {
+        print("売り切れ状態変更が通知されました\n");
+    }
+    function onNotifyEject(data) {
+        print(data.buttonNo + "が排出されました\n");
+    }
+    function onNotifyDoorOpen(data) {
+        print("ドアが開きました\n");
+    }
+    function onNotifyDoorClose(data) {
+        print("ドアが閉じました\n");
+    }
+    function onNotifyKeepAlive(data) {}
+    
+    function eject(buttonNo) {
+        print(buttonNo + "番を排出します\n");
+        vc.ejectItems([buttonNo]);
+    }
+
+    function print(message) {
+        let textarea = document.getElementById('textarea');
+        textarea.value = new Date().toTimeString().substring(0, 8) + ' ' + message + textarea.value;
+    }
+
+    //URLを指定
+    serverurl = '<%= serverurl %>'
+
+    thanksurl = 'https://' + serverurl + ':49160/thanks'
+    outputurl = 'https://' + serverurl + ':49160/output'
+
+    //自販機番号を取得
+    const venderid = document.getElementById("vendernum").textContent;
+    //countを取得
+    const cartcount = document.getElementById("cartcount").textContent;
+    //itemを排出(初期化が時間がかかるため非同期処理として扱う,3s間)
+    setTimeout(()=>{
+        print(venderid + "番を排出します\n");
+        vc.ejectItems([venderid]);
+    }, 3000);
+    //もし、countが1ならば
+    if( cartcount == 1 ){
+        setTimeout(()=>{location.href = thanksurl}, 5000);
+    //もし、countが1より大きいならば
+    } else if (cartcount > 1) {
+        setTimeout(()=>{location.href = outputurl}, 5000);
+    } else {
+        console.log("error");
+    }
+
+</script>
+<style>
+    html, body {
+        margin: 0;
+        padding: 0;
+    }
+    body {
+        padding: 10px;
+    }
+    .buttons {
+        width: 100%;
+        margin: 10px 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    #textarea {
+        width: 100%;
+        height: 300px;
+        box-sizing: border-box;
+    }
+</style>
+
+</body>
+</html>

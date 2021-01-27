@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+<head>
+  <title>RECO薬局-支払い画面</title>
+  <%- include("../_share/link.ejs") %>
+</head>
+  <body>
+    <% const outurl = "https://" + domain + ":49160/output/" %>
+    <p class="instruction3">現金もしくはEdyで<br>お支払いください</p>
+    <div class="payment_btn">
+      <a href="<%= outurl %>" class="btn--pay btn--radius"><img src="/public/uiimages/coin.png" alt="現金" class="coin_img">現金で支払う</a><br>
+      <a href="<%= outurl %>" class="btn--pay btn--radius"><img src="/public/uiimages/edy.png" alt="edy" class="edy_img">Edyで支払う</a>
+    </div>
+    <p class="total_price2"> 購入金額：¥<%= paymentall %></p>
+
+    <footer>
+      <form action="/settlement/">
+        <input type="hidden" name="pageflag" value="back">
+        <button type="submit" class="page_btn0 btn_left"><img src="/public/uiimages/left2.png" alt="戻る" class="arrow"></button>
+      </form>  
+    </footer>
+  </body>
+</html>

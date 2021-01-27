@@ -1,0 +1,101 @@
+<% var countup = 0; %>
+<% var all = 0; %>
+<% for(let i in content) { %>
+  <% let obj = content[i]; %>
+  <% if (obj.cartcount != 0){ %>
+  <% var countup = countup + 1 %>
+  <section id="card">
+    <div class="card-content">
+      <img class="card-img" src="<%= obj.link %>" alt="商品">
+      <h1 class="card-title"><%= obj.item %></h1>
+      <p class="card-text">¥<%= obj.value %></p>
+      <%　var all = all + (obj.value * obj.cartcount) ; %>
+      <!-- カートの中身のitem数をカウントする -->
+      <% let cartitemnum = 0; %>
+      <% let buyitemnum = 0; %>
+      <!-- カートの中身の商品数をcartitemnumに格納する.nullが入ってきた場合0を代入する. -->
+      <% if (obj.cartcount>=1){ %>
+        <% cartitemnum = cartitemnum + obj.cartcount %>
+      <% } else { %>
+        <% cartitemnum = 0; %>
+      <% } %>
+      <!-- 10日以内の購入履歴の商品数をbuyitemnumに格納する.nullが入ってきた場合0を代入する. -->
+      <% if (obj.buycount >= 1){ %>
+        <% buyitemnum = buyitemnum + obj.buycount %>
+      <% } else { %>
+        <% buyitemnum = 0; %>
+      <% } %>
+      <!-- 制限個数を超えた場合コメントを表示 -->
+      <!-- 商品の10日以内に購入した数とカートに入っている数を合計して制限個数を超えていないかを確認 -->
+      <% if (obj.limitednum <= buyitemnum + cartitemnum){ %>
+        <p class="card-warn">これ以上購入できません。</p>
+      <% } %>
+      <div class="card-link">
+        <table id="count">
+          <tr>
+            <td>
+              <li style="display:inline-flex">
+                <form action="/cartitemdel/" method="get">
+                  <button type="submit" class="minus quantity">－</button>
+                  <input type="hidden" name="delitem" value="<%= obj.item %>" >
+                </form>
+                <input type="text" name="input01" value="×<%= obj.cartcount %>" readonly class="number">
+                <% if (obj.limitednum <= buyitemnum + cartitemnum){ %>
+                  <form action="#" method="get">
+                    <button type="submit" class=" plus quantity" disabled>×</button>
+                    <input type="hidden" name="additemname" value="<%= obj.item %>" >
+                    <input type="hidden" name="additemvalue" value="<%= obj.value %>" >
+                  </form>
+                <% } else { %>
+                  <form action="/cartitemadd/" method="get">
+                    <button type="submit" class=" plus quantity">+</button>
+                    <input type="hidden" name="additemname" value="<%= obj.item %>" >
+                    <input type="hidden" name="additemvalue" value="<%= obj.value %>" >
+                  </form>
+                <% } %>
+
+              </li>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    </section>
+    <div id="modal0<%= countup %>" class="modal js-modal">
+      <div class="modal__bg js-modal-close"></div>
+      <div class="modal__content">
+        <img src="<%= obj.modallink1 %>" alt="詳細">
+        <img src="<%= obj.modallink2 %>" alt="詳細">
+        <img src="<%= obj.modallink3 %>" alt="詳細">
+        <a class="js-modal-close" href="">閉じる</a>
+      </div>
+   </div>
+<% } %>
+<% } %>
+<p class="total_price">合計金額：<%= all %>円</p>
+<!-- ビデオ通話で相談 -->
+<% const webconfurl = "https://" + domainname + ":49160/webconf/" %>
+<div class="search_btn2">
+  <a href="<%= webconfurl %>" class="circle_spread_btn video">
+    <i class="fas fa-video fa-5x faa-float animated"></i><br>
+    <p class="search_v_cart">薬剤師に相談</p>
+  </a>
+</div>
+
+<% const backurl = "https://" + domainname + ":49160/top/" %>
+<% if (all == 0){ %>
+  <a href="#" class="btn--buy btn--radius">購入する</a>
+  <a href="<%= backurl %>" class="btn--buy1">お買い物を続ける</a>
+<% }else{ %>
+　<% if (pageflag == "addcart"){ %>
+    <div class="Addcart">
+      <p><i class="fas fa-shopping-cart fa-10x"></i></p>
+      <h1 class="cart_message">カートに入れました</h1>
+    </div>
+    <a href="<%= 'https://' + domainname + ':49160/payment?all=' + all %>" class="btn--buy btn--radius">購入する</a>
+    <a href="<%= backurl %>" class="btn--buy1">お買い物を続ける</a>
+  <% } else if (pageflag == "cartitemdel" || pageflag == "top" || pageflag == "normal" || pageflag == "back") { %>
+    <a href="<%= 'https://' + domainname + ':49160/payment?all=' + all %>" class="btn--buy btn--radius">購入する</a>
+    <a href="<%= backurl %>" class="btn--buy1">お買い物を続ける</a>
+  <% } %>
+<% } %>
