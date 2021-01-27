@@ -11,6 +11,8 @@ reco_central...Swiftで立ち上げるもの。
 
 bat_demo.js...自販機にある簡易起動バッチ.batをPCで再現した物。動きだけ。
 
+client.js.../recoapp/src/public/に研究室で管理しているclient.jsを配置する.
+
 README.drawio...図での説明、VScodeで拡張機能"Draw.io Integration"をinatallしてみるかwebAppの[Draw.io](https://app.diagrams.net/)でファイルを開く。
 
 setup
